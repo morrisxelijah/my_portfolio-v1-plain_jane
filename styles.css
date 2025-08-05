@@ -4,13 +4,18 @@
 :root {
     --bg: #ffffff;
     --primary: #222222;
-    --secondary: #03b384;
+    --secondary: #09a57c;
     --accent: #0077cc;
-    --muted: #f9f9f9;
+    --muted: #f7f7f7;
 
     --font-reg: 'Helvetica Neue', sans-serif;
     --font-fun: 'Comic Sans MS', sans-serif;
     --font-accent: 'Comic Neue', cursive;
+
+    /* add JS later to dynamically generate randomly (make sure to add bounds maxes) 
+       maybe animate to pop out of the icon that triggered it */
+    --popup-out: 30%;
+    --popup-out: 10%;
 }
 
 
@@ -21,7 +26,7 @@
 [data-theme="dark"] {
     --bg: #0b0f1a;
     --primary: #e0e0e0;
-    --secondary: #03f8cfef;
+    --secondary: #03f8cfe1;
     --accent: #00c8ff;
     --muted: #111827;
 }
@@ -46,6 +51,8 @@ body {
     font-family: var(--font-fun);
     line-height: 1.5;
     scroll-behavior: smooth;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
 }
 
@@ -56,7 +63,7 @@ body {
 ----------------------------- */
 
 header {
-    padding: 1rem;
+    padding: .25rem;
     display: flex;
     justify-content: flex-start;
     gap: 1rem;
@@ -96,9 +103,12 @@ header {
     opacity: 0.75;
     max-width: 60ch;
     margin: 0 auto;
+    word-spacing: 0.4em; /* double space words */
 }
 
-
+main {
+    flex: 1; /* fills remaining height to push footer to the bottom */
+}
 
 main#home {
     text-align: center;
@@ -117,7 +127,7 @@ main#home {
     /* maybe use for dynamic icon count:  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));*/
 
     gap: 1rem; /* spacing between icons */
-    max-width: 600px; /* prevent grid from being too wide */
+    max-width: 800px; /* prevent grid from being too wide */
     margin: 0 auto; /* center grid horizontally */
     padding: 1rem;
 }
@@ -149,6 +159,7 @@ main#home {
 
 
 footer {
+    font-size: 0.8rem;
     font-family: var(--font-reg);
     text-align: center;
     padding: 2rem 1rem;
@@ -161,21 +172,14 @@ footer {
     margin-top: 2rem;
 }
 
-/* alt tablet/desktop view*/
-@media (min-width: 768px) {
-    .icon-grid {
-        grid-template-columns: repeat(6, 1fr); /* 1 row with 6 icons */
-    }
-}
 
 
 
 /* ----------------------------
-   APP WINDOWS (HIDDEN INIT)
+   APP WINDOWS (HIDDEN BY DEFAULT)
 ----------------------------- */
-.app-window {
-    display: none;
-    /* toggle using :checked logic */
+.window {
+    display: none;  /* toggle using :checked logic */
 }
 
 .dark-mode-only {
@@ -184,4 +188,172 @@ footer {
 
 [data-theme="dark"] .dark-mode-only {
     display: block;
+}
+
+
+
+
+/* ----------------------------
+   WINDOW TOGGLE LOGIC
+----------------------------- */
+
+/* when the checkbox is checked, show the app window */
+.window-toggle:checked + .icon-item + .window {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 79vh;
+    background: var(--bg);
+    color: var(--primary);
+    border-radius: 1rem 1rem 0 0; /* top corners only */
+    box-shadow: 0 -0.5rem 2rem rgba(0, 0, 0, 0.2);  /* rgb is easier to adjust opacity dynamically */
+    z-index: 100;  /* make sure app window appears above all other elements*/
+    padding-bottom: 1rem;
+    overflow-y: auto;  /* allow scrolling if content exceeds view limit */
+    animation: slide-up 0.58s ease-out both; /* botoom sheet looks like it was pulled out of a drawer*/
+}
+
+/* .window-toggle:not(:checked)+.icon-item+.app-window {
+    animation: slide-down 0.5s ease-in;
+} not working yet, need JS */
+
+
+.window-bar {
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;  /* vertical stack: handle on top, title bar below */
+    align-items: stretch;
+    padding: 0.25rem 0.75rem 0.75rem;
+    font-size: 1.15rem;
+    background-color: var(--muted);
+}
+
+/* row with title and close button */
+.window-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* vertically align title and ✕ */
+}
+
+.window-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: left;
+    color: var(--secondary);
+}
+
+.close-button {
+    font-size: 1.2rem;
+    cursor: pointer; /* make the x look clickable */
+    color: var(--primary);
+
+}
+
+.drag-handle {
+    width: 40px;
+    height: 5px;
+    background-color: var(--primary);
+    border-radius: 4px;
+    margin: 0.5rem auto 0.25rem auto;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* make it feel lifted */
+    opacity: 0.6;
+    animation: handle-bounce 3s ease-out 1;  /* suggest interactivity */
+    cursor: pointer;  /* make the bar look clickable */
+}
+
+/* animate the handle with a subtle bounce */
+@keyframes handle-bounce {
+    0% {
+        transform: translateY(-6px);
+        opacity: 0;
+    }
+
+    50% {
+        transform: translateY(0px);
+        opacity: 0.7;
+    }
+
+    75% {
+        transform: translateY(-1.1px);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 0.6;
+    }
+}
+
+/* maybe need JS to add delay based on click order*/
+@keyframes slide-up {
+    from {
+        transform: translateY(100%);
+        opacity: 0.12;
+    }
+
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+
+/* maybe need JS to show sliding down animation when window is closed*/
+@keyframes slide-down {
+    from {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+.window-content {
+    padding: 1rem;
+    font-size: 0.95rem;
+}
+
+
+
+
+/* ----------------------------
+   ALT TABLET / DESKTOP VIEW
+----------------------------- */
+
+@media (min-width: 768px) {
+    header {
+            padding: 2rem;
+        }
+
+    .icon-grid {
+        grid-template-columns: repeat(6, 1fr);  /* 1 row with 6 icons */
+    }
+
+    .drag-handle {
+        display: none;
+    }
+
+    .window-bar {
+        padding: 0.75rem 1rem;
+    }
+
+    .window-toggle:checked + .icon-item + .window {
+        top: var(--popout-top);
+        left: var(--popout-left);
+        transform: none;
+        width: 90%;
+        max-width: 480px;
+        max-height: 50vh;  /* 50% of viewport height */
+        border-radius: 1rem;
+        animation: slide-up 0.2s ease both;
+    }
 }

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Personal landing page and interactive resume" />
-  <title>My Portfolio</title>
+  <title>eli's  portfolio</title>
   <link rel="stylesheet" href="styles.css" />
 
   <!-- favicon (later) -->
   <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
 </head>
+
 <body>
 
   <!-- toggle section -->
@@ -23,23 +25,48 @@
     <!-- hero section: intro, healdine/tagline -->
     <section class="hero">
         <h1>
-        <span class="hi">hey there!</span><span class="highlight-name"> i'm elijah</span>
+        <span class="hi">hey there!</span>&nbsp;<span class="highlight-name"> i'm elijah</span>
         </h1>
-        <p class="tagline">maker, tinkerer, life-long learner</p>
+        <p class="tagline">tinkerer, maker, life-long learner</p>
     </section>
 
     <!-- icon navigation begins -->
     <nav class="icon-grid">
-        <a href="#" class="icon-item" aria-label="about">
-        <img src="assets/icons/about.svg" alt="about icon">
-        <p>about</p>
-        </a>
+
+
+        <!-- testing wrapper idea with about section -->
+        <div class="wrapper">
+            <input type="checkbox" id="toggle-about" class="window-toggle" hidden />
+
+            <label for="toggle-about" class="icon-item" aria-label="about">
+                <img src="assets/icons/about.svg" alt="about icon" />
+                <p>about</p>
+            </label>
+
+            <section id="about" class="window">
+                <div class="window-bar">
+                    <!-- row 1: drag handle (centered) -->
+                    <div class="drag-handle"></div>
+
+                    <!-- row 2: title and close button -->
+                    <div class="window-bar-inner">
+                        <p class="window-title">about</p>
+                        <label for="toggle-about" class="close-button" aria-label="close the about window">x</label>
+                    </div>
+                </div>
+
+                <div class="window-content">
+                    <p>this is the about window.</p>
+                </div>
+            </section>
+        </div>
+
         <a href="#" class="icon-item" aria-label="links">
         <img src="assets/icons/links.svg" alt="links icon">
         <p>links</p>
         </a>
-        <a href="#" class="icon-item" aria-label="work">
-        <img src="assets/icons/work.svg" alt="work icon">
+        <a href="#" class="icon-item" aria-label="experience">
+        <img src="assets/icons/experience.svg" alt="experience icon">
         <p>work</p>
         </a>
         <a href="#" class="icon-item" aria-label="faq">
@@ -58,12 +85,12 @@
   </main>
 
   <!-- section containers -->
-  <section id="about" class="app-window hidden"></section>
-  <section id="links" class="app-window hidden"></section>
-  <section id="work" class="app-window hidden"></section>
-  <section id="faq" class="app-window hidden"></section>
-  <section id="contact" class="app-window hidden"></section>
-  <section id="random" class="app-window hidden dark-mode-only"></section>
+  <section id="about" class="window hidden"></section>
+  <section id="links" class="window hidden"></section>
+  <section id="work" class="window hidden"></section>
+  <section id="faq" class="window hidden"></section>
+  <section id="contact" class="window hidden"></section>
+  <section id="random" class="window hidden dark-mode-only"></section>
 
   <!-- footer -->
   <footer>
@@ -72,4 +99,5 @@
   </footer>
 
 </body>
+
 </html>
