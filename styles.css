@@ -1,0 +1,187 @@
+/* ----------------------------
+   CSS VARIABLES (LIGHT MODE)
+----------------------------- */
+:root {
+    --bg: #ffffff;
+    --primary: #222222;
+    --secondary: #03b384;
+    --accent: #0077cc;
+    --muted: #f9f9f9;
+
+    --font-reg: 'Helvetica Neue', sans-serif;
+    --font-fun: 'Comic Sans MS', sans-serif;
+    --font-accent: 'Comic Neue', cursive;
+}
+
+
+
+/* ----------------------------
+   CSS VARIABLES (DARK MODE)
+----------------------------- */
+[data-theme="dark"] {
+    --bg: #0b0f1a;
+    --primary: #e0e0e0;
+    --secondary: #03f8cfef;
+    --accent: #00c8ff;
+    --muted: #111827;
+}
+
+
+
+/* ----------------------------
+   CSS RESET / BASE STYLES
+----------------------------- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background: var(--bg);
+    color: var(--primary);
+    font-family: var(--font-fun);
+    line-height: 1.5;
+    scroll-behavior: smooth;
+    min-height: 100vh;
+}
+
+
+
+/* ----------------------------
+   LAYOUT PLACEHOLDER STYLES
+----------------------------- */
+
+header {
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+
+
+/* --------------------------------------
+   HERO SECTION STYLES
+   -------------------------------------- */
+
+.hero {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.hero .hi {
+    font-family: var(--font-fun);
+    font-size: 2.25rem;
+    color: var(--secondary);
+}
+
+.hero .highlight-name {
+    color: var(--accent);
+    font-weight: 800;
+}
+
+.tagline {
+    font-size: 1rem;
+    color: var(--text);
+    opacity: 0.75;
+    max-width: 60ch;
+    margin: 0 auto;
+}
+
+
+
+main#home {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+
+
+/* --------------------------------------
+   ICON GRID STYLES
+   -------------------------------------- */
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* mobile-first: 3 columns stacked */
+    /* maybe use for dynamic icon count:  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));*/
+
+    gap: 1rem; /* spacing between icons */
+    max-width: 600px; /* prevent grid from being too wide */
+    margin: 0 auto; /* center grid horizontally */
+    padding: 1rem;
+}
+
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none; /* take out underline */
+    color: var(--primary);
+    background-color: var(--muted);
+    padding: 1rem;
+    border-radius: 0.75rem;
+    transition: transform 0.2s ease;
+}
+
+.icon-item img {
+    width: clamp(32px, 6vw, 64px); /* start small on mobile; grow with the screen; stop growing on desktop*/
+    height: clamp(32px, 6vw, 64px); /* start small on mobile; grow with the screen; stop growing on desktop*/;
+    margin-bottom: 0.5rem;
+}
+
+.icon-item:hover,
+.icon-item:focus {
+    transform: scale(1.1);
+    outline: none; /* for keyboard shortcuts*/
+}
+
+
+
+footer {
+    font-family: var(--font-reg);
+    text-align: center;
+    padding: 2rem 1rem;
+    background: transparent;
+}
+
+.wave-image {
+    width: 100%;
+    display: block;
+    margin-top: 2rem;
+}
+
+/* alt tablet/desktop view*/
+@media (min-width: 768px) {
+    .icon-grid {
+        grid-template-columns: repeat(6, 1fr); /* 1 row with 6 icons */
+    }
+}
+
+
+
+/* ----------------------------
+   APP WINDOWS (HIDDEN INIT)
+----------------------------- */
+.app-window {
+    display: none;
+    /* toggle using :checked logic */
+}
+
+.dark-mode-only {
+    display: none;
+}
+
+[data-theme="dark"] .dark-mode-only {
+    display: block;
+}
