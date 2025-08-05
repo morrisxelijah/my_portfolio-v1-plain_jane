@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,7 +13,9 @@
   <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
 </head>
 
+
 <body>
+
 
   <!-- toggle section -->
   <header>
@@ -34,7 +37,7 @@
     <nav class="icon-grid">
 
 
-        <!-- testing wrapper idea with about section -->
+        <!-- about -->
         <div class="wrapper">
             <input type="checkbox" id="toggle-about" class="window-toggle" hidden />
 
@@ -56,47 +59,135 @@
                 </div>
 
                 <div class="window-content">
-                    <p>this is the about window.</p>
+                    <p>this is the about window</p>
                 </div>
             </section>
         </div>
 
-        <a href="#" class="icon-item" aria-label="links">
-        <img src="assets/icons/links.svg" alt="links icon">
-        <p>links</p>
-        </a>
-        <a href="#" class="icon-item" aria-label="experience">
-        <img src="assets/icons/experience.svg" alt="experience icon">
-        <p>work</p>
-        </a>
-        <a href="#" class="icon-item" aria-label="faq">
-        <img src="assets/icons/faq.svg" alt="faq icon">
-        <p>faq</p>
-        </a>
-        <a href="#" class="icon-item" aria-label="contact">
-        <img src="assets/icons/contact.svg" alt="contact icon">
-        <p>contact</p>
-        </a>
-        <a href="#" class="icon-item" aria-label="random">
-        <img src="assets/icons/random.svg" alt="random icon">
-        <p>random</p>
-        </a>
+        <!-- links -->
+        <div class="wrapper">
+            <input type="checkbox" id="toggle-links" class="window-toggle" hidden />
+
+            <label for="toggle-links" class="icon-item" aria-label="links">
+                <img src="assets/icons/links.svg" alt="links icon" />
+                <p>links</p>
+            </label>
+
+            <section id="links" class="window">
+                <div class="window-bar">
+                    <div class="drag-handle"></div>
+                    <div class="window-bar-inner">
+                        <p class="window-title">links</p>
+                        <label for="toggle-links" class="close-button" aria-label="close the links window">x</label>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <p>this is the links window</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- work -->
+        <div class="wrapper">
+            <input type="checkbox" id="toggle-work" class="window-toggle" hidden />
+
+            <label for="toggle-work" class="icon-item" aria-label="work experience">
+                <img src="assets/icons/experience.svg" alt="experience icon" />
+                <p>work</p>
+            </label>
+
+            <section id="work" class="window">
+                <div class="window-bar">
+                    <div class="drag-handle"></div>
+                    <div class="window-bar-inner">
+                        <p class="window-title">work</p>
+                        <label for="toggle-work" class="close-button" aria-label="close the work window">x</label>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <p>this is the work window</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- faq -->
+        <div class="wrapper">
+            <input type="checkbox" id="toggle-faq" class="window-toggle" hidden />
+
+            <label for="toggle-faq" class="icon-item" aria-label="frequently asked questions">
+                <img src="assets/icons/faq.svg" alt="faq icon" />
+                <p>faq</p>
+            </label>
+
+            <section id="faq" class="window">
+                <div class="window-bar">
+                    <div class="drag-handle"></div>
+                    <div class="window-bar-inner">
+                        <p class="window-title">faq</p>
+                        <label for="toggle-faq" class="close-button" aria-label="close the faq window">x</label>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <p>this is the faq window</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- contact -->
+        <div class="wrapper">
+            <input type="checkbox" id="toggle-contact" class="window-toggle" hidden />
+
+            <label for="toggle-contact" class="icon-item" aria-label="contact">
+                <img src="assets/icons/contact.svg" alt="contact icon" />
+                <p>contact</p>
+            </label>
+
+            <section id="contact" class="window">
+                <div class="window-bar">
+                    <div class="drag-handle"></div>
+                    <div class="window-bar-inner">
+                        <p class="window-title">contact</p>
+                        <label for="toggle-contact" class="close-button" aria-label="close the contact window">x</label>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <p>this is the contact window</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- random -->
+        <div class="wrapper">
+            <input type="checkbox" id="toggle-random" class="window-toggle" hidden />
+
+            <label for="toggle-random" class="icon-item" aria-label="random">
+                <img src="assets/icons/random.svg" alt="random icon" />
+                <p>random</p>
+            </label>
+
+            <section id="random" class="window">
+                <div class="window-bar">
+                    <div class="drag-handle"></div>
+                    <div class="window-bar-inner">
+                        <p class="window-title">random</p>
+                        <label for="toggle-random" class="close-button" aria-label="close the random window">x</label>
+                    </div>
+                </div>
+                <div class="window-content">
+                    <p>this is the random window</p>
+                </div>
+            </section>
+        </div>
     </nav>
   </main>
 
-  <!-- section containers -->
-  <section id="about" class="window hidden"></section>
-  <section id="links" class="window hidden"></section>
-  <section id="work" class="window hidden"></section>
-  <section id="faq" class="window hidden"></section>
-  <section id="contact" class="window hidden"></section>
-  <section id="random" class="window hidden dark-mode-only"></section>
 
   <!-- footer -->
   <footer>
     <img src="assets/images/wave.svg" alt="wave background" class="wave-image" />
     <p>&copy 2025 ELIJAH MORRIS</p>
   </footer>
+
 
 </body>
 

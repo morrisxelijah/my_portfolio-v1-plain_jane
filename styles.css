@@ -14,8 +14,8 @@
 
     /* add JS later to dynamically generate randomly (make sure to add bounds maxes) 
        maybe animate to pop out of the icon that triggered it */
-    --popup-out: 30%;
-    --popup-out: 10%;
+    --popout-top: 30%;
+    --popout-left: 10%;
 }
 
 
