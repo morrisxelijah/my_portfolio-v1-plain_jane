@@ -1,204 +1,297 @@
 <!DOCTYPE html>
-<html lang="en">   <!-- data-theme will be injected by the tiny script below -->
+<html lang="en">
+  <!-- data-theme will be injected by the tiny script below -->
 
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="interactive resume and personal landing page" />
-    <title>eli's  portfolio</title>
-
+    <meta
+      name="description"
+      content="interactive resume and personal landing page"
+    />
+    <title>eli's portfolio</title>
 
     <!-- main stylesheet (loads after theme has been stamped) -->
     <link rel="stylesheet" href="styles.css" />
 
-
     <!-- favicon (later) -->
     <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
-</head>
+  </head>
 
-
-<body>
-
-  <!-- page toggles -->
-  <header>
-    <!-- light/dark mode toggle -->
-    <div class="theme-wrapper">
-        <input type="checkbox" id="theme-toggle" hidden>
-        <label for="theme-toggle" class="theme-toggle" aria-label="change theme (light/dark mode)">
-            <img class="theme-icon light-icon" src="assets/icons/sun.svg"  alt="light mode" />
-            <img class="theme-icon dark-icon"  src="assets/icons/moon.svg" alt="dark mode"  />
+  <body>
+    <!-- page toggles -->
+    <header>
+      <!-- light/dark mode toggle -->
+      <div class="theme-wrapper">
+        <input type="checkbox" id="theme-toggle" hidden />
+        <label
+          for="theme-toggle"
+          class="theme-toggle"
+          aria-label="change theme (light/dark mode)"
+        >
+          <img
+            class="theme-icon light-icon"
+            src="assets/icons/sun.svg"
+            alt="light mode"
+          />
+          <img
+            class="theme-icon dark-icon"
+            src="assets/icons/moon.svg"
+            alt="dark mode"
+          />
         </label>
-    </div>
+      </div>
 
-    <!-- music toggle placeholder -->
-  </header>
+      <!-- music toggle placeholder -->
+    </header>
 
-
-  <main class="site">
-    <!-- hero section (intro, headline/tagline) -->
-    <section class="hero">
+    <main class="site">
+      <!-- hero section (intro, headline/tagline) -->
+      <section class="hero">
         <h1>
-            <span class="hi">hey there!</span>&nbsp;<span class="highlight-name"> i'm elijah</span>
+          <span class="hi">hey there!</span>&nbsp;<span class="highlight-name">
+            i'm elijah</span
+          >
         </h1>
         <p class="tagline">tinkerer, maker, life-long learner</p>
-    </section>
+      </section>
 
-    <!-- icon navigation -->
-    <nav class="icon-grid">
-
+      <!-- icon navigation -->
+      <nav class="icon-grid">
         <!-- about -->
         <div class="icon-wrapper">
-            <input type="checkbox" id="toggle-about" class="window-toggle" hidden />
+          <input
+            type="checkbox"
+            id="toggle-about"
+            class="window-toggle"
+            hidden
+          />
 
-            <label for="toggle-about" class="icon-item" aria-label="about section">
-                <img src="assets/icons/about.svg" alt="about icon" />
-                <p>about</p>
-            </label>
+          <label
+            for="toggle-about"
+            class="icon-item"
+            aria-label="about section"
+          >
+            <img src="assets/icons/about.svg" alt="about icon" />
+            <p>about</p>
+          </label>
 
-            <section id="about" class="window">
-                <div class="window-bar">
-                    <!-- row 1: drag handle (centered) -->
-                    <div class="drag-handle"></div>
+          <section id="about" class="window">
+            <div class="window-bar">
+              <!-- row 1: drag handle (centered) -->
+              <div class="drag-handle"></div>
 
-                    <!-- row 2: title and close button -->
-                    <div class="window-bar-inner">
-                        <p class="window-title">about</p>
-                        <label for="toggle-about" class="close-button" aria-label="close the about window">x</label>
-                    </div>
-                </div>
+              <!-- row 2: title and close button -->
+              <div class="window-bar-inner">
+                <p class="window-title">about</p>
+                <label
+                  for="toggle-about"
+                  class="close-button"
+                  aria-label="close the about window"
+                  >x</label
+                >
+              </div>
+            </div>
 
-                <div class="window-content">
-                    <p>this is the about window</p>
-                </div>
-            </section>
+            <div class="window-content">
+              <p>this is the about window</p>
+            </div>
+          </section>
         </div>
 
         <!-- links -->
         <div class="icon-wrapper">
-            <input type="checkbox" id="toggle-links" class="window-toggle" hidden />
+          <input
+            type="checkbox"
+            id="toggle-links"
+            class="window-toggle"
+            hidden
+          />
 
-            <label for="toggle-links" class="icon-item" aria-label="links section">
-                <img src="assets/icons/links.svg" alt="links icon" />
-                <p>links</p>
-            </label>
+          <label
+            for="toggle-links"
+            class="icon-item"
+            aria-label="links section"
+          >
+            <img src="assets/icons/links.svg" alt="links icon" />
+            <p>links</p>
+          </label>
 
-            <section id="links" class="window">
-                <div class="window-bar">
-                    <div class="drag-handle"></div>
-                    <div class="window-bar-inner">
-                        <p class="window-title">links</p>
-                        <label for="toggle-links" class="close-button" aria-label="close the links window">x</label>
-                    </div>
-                </div>
-                <div class="window-content">
-                    <p>this is the links window</p>
-                </div>
-            </section>
+          <section id="links" class="window">
+            <div class="window-bar">
+              <div class="drag-handle"></div>
+              <div class="window-bar-inner">
+                <p class="window-title">links</p>
+                <label
+                  for="toggle-links"
+                  class="close-button"
+                  aria-label="close the links window"
+                  >x</label
+                >
+              </div>
+            </div>
+            <div class="window-content">
+              <p>this is the links window</p>
+            </div>
+          </section>
         </div>
 
         <!-- experience -->
         <div class="icon-wrapper">
-            <input type="checkbox" id="toggle-experience" class="window-toggle" hidden />
+          <input
+            type="checkbox"
+            id="toggle-experience"
+            class="window-toggle"
+            hidden
+          />
 
-            <label for="toggle-experience" class="icon-item" aria-label="experience section">
-                <img src="assets/icons/experience.svg" alt="experience icon" />
-                <p>experience</p>
-            </label>
+          <label
+            for="toggle-experience"
+            class="icon-item"
+            aria-label="experience section"
+          >
+            <img src="assets/icons/experience.svg" alt="experience icon" />
+            <p>experience</p>
+          </label>
 
-            <section id="experience" class="window">
-                <div class="window-bar">
-                    <div class="drag-handle"></div>
-                    <div class="window-bar-inner">
-                        <p class="window-title">exp</p>
-                        <label for="toggle-experience" class="close-button" aria-label="close the work window">x</label>
-                    </div>
-                </div>
-                <div class="window-content">
-                    <p>this is the experience window</p>
-                </div>
-            </section>
+          <section id="experience" class="window">
+            <div class="window-bar">
+              <div class="drag-handle"></div>
+              <div class="window-bar-inner">
+                <p class="window-title">exp</p>
+                <label
+                  for="toggle-experience"
+                  class="close-button"
+                  aria-label="close the work window"
+                  >x</label
+                >
+              </div>
+            </div>
+            <div class="window-content">
+              <p>this is the experience window</p>
+            </div>
+          </section>
         </div>
 
         <!-- faq -->
         <div class="icon-wrapper">
-            <input type="checkbox" id="toggle-faq" class="window-toggle" hidden />
+          <input type="checkbox" id="toggle-faq" class="window-toggle" hidden />
 
-            <label for="toggle-faq" class="icon-item" aria-label="frequently asked questions section">
-                <img src="assets/icons/faq.svg" alt="faq icon" />
-                <p>faq</p>
-            </label>
+          <label
+            for="toggle-faq"
+            class="icon-item"
+            aria-label="frequently asked questions section"
+          >
+            <img src="assets/icons/faq.svg" alt="faq icon" />
+            <p>faq</p>
+          </label>
 
-            <section id="faq" class="window">
-                <div class="window-bar">
-                    <div class="drag-handle"></div>
-                    <div class="window-bar-inner">
-                        <p class="window-title">faq</p>
-                        <label for="toggle-faq" class="close-button" aria-label="close the faq window">x</label>
-                    </div>
-                </div>
-                <div class="window-content">
-                    <p>this is the faq window</p>
-                </div>
-            </section>
+          <section id="faq" class="window">
+            <div class="window-bar">
+              <div class="drag-handle"></div>
+              <div class="window-bar-inner">
+                <p class="window-title">faq</p>
+                <label
+                  for="toggle-faq"
+                  class="close-button"
+                  aria-label="close the faq window"
+                  >x</label
+                >
+              </div>
+            </div>
+            <div class="window-content">
+              <p>this is the faq window</p>
+            </div>
+          </section>
         </div>
 
         <!-- contact -->
         <div class="icon-wrapper">
-            <input type="checkbox" id="toggle-contact" class="window-toggle" hidden />
+          <input
+            type="checkbox"
+            id="toggle-contact"
+            class="window-toggle"
+            hidden
+          />
 
-            <label for="toggle-contact" class="icon-item" aria-label="contact section">
-                <img src="assets/icons/contact.svg" alt="contact icon" />
-                <p>contact</p>
-            </label>
+          <label
+            for="toggle-contact"
+            class="icon-item"
+            aria-label="contact section"
+          >
+            <img src="assets/icons/contact.svg" alt="contact icon" />
+            <p>contact</p>
+          </label>
 
-            <section id="contact" class="window">
-                <div class="window-bar">
-                    <div class="drag-handle"></div>
-                    <div class="window-bar-inner">
-                        <p class="window-title">contact</p>
-                        <label for="toggle-contact" class="close-button" aria-label="close the contact window">x</label>
-                    </div>
-                </div>
-                <div class="window-content">
-                    <p>this is the contact window</p>
-                </div>
-            </section>
+          <section id="contact" class="window">
+            <div class="window-bar">
+              <div class="drag-handle"></div>
+              <div class="window-bar-inner">
+                <p class="window-title">contact</p>
+                <label
+                  for="toggle-contact"
+                  class="close-button"
+                  aria-label="close the contact window"
+                  >x</label
+                >
+              </div>
+            </div>
+            <div class="window-content">
+              <p>this is the contact window</p>
+            </div>
+          </section>
         </div>
 
         <!-- random -->
-        <div class="icon-wrapper">
-            <input type="checkbox" id="toggle-random" class="window-toggle" hidden />
+        <div id="random-wrapper" class="icon-wrapper">
+          <input
+            type="checkbox"
+            id="toggle-random"
+            class="window-toggle"
+            hidden
+          />
 
-            <label for="toggle-random" class="icon-item" aria-label="random section">
-                <img src="assets/icons/random.svg" alt="random icon" />
-                <p>random</p>
-            </label>
+          <label
+            for="toggle-random"
+            class="icon-item"
+            aria-label="random section"
+          >
+            <img src="assets/icons/random.svg" alt="random icon" />
+            <p>random</p>
+          </label>
 
-            <section id="random" class="window">
-                <div class="window-bar">
-                    <div class="drag-handle"></div>
-                    <div class="window-bar-inner">
-                        <p class="window-title">random</p>
-                        <label for="toggle-random" class="close-button" aria-label="close the random window">x</label>
-                    </div>
-                </div>
-                <div class="window-content">
-                    <p>this is the random window</p>
-                </div>
-            </section>
+          <section id="random" class="window">
+            <div class="window-bar">
+              <div class="drag-handle"></div>
+              <div class="window-bar-inner">
+                <p class="window-title">random</p>
+                <label
+                  for="toggle-random"
+                  class="close-button"
+                  aria-label="close the random window"
+                  >x</label
+                >
+              </div>
+            </div>
+            <div class="window-content">
+              <p>this is the random window</p>
+            </div>
+          </section>
         </div>
-    </nav>
-  </main>
+      </nav>
+    </main>
 
+    <!-- footer -->
+    <footer>
+      <img
+        src="assets/images/wave.svg"
+        alt="wave background"
+        class="wave-image"
+      />
+      <p>&copy 2025 ELIJAH MORRIS</p>
+    </footer>
 
-  <!-- footer -->
-  <footer>
-    <img src="assets/images/wave.svg" alt="wave background" class="wave-image" />
-    <p>&copy 2025 ELIJAH MORRIS</p>
-  </footer>
-
-  <!-- wait for the document to load before running js features -->
-  <script src="script.js" defer></script>
-
-</body>
+    <!-- wait for the document to load before running js features -->
+    <script src="script.js" defer></script>
+  </body>
 </html>
