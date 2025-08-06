@@ -85,16 +85,6 @@
     --shadows: var(--dark-shadows);
 }
 
-/* manual light override (beats prefers-color-scheme) */
-[data-theme="light"] {
-    --bg: #ffffff;
-    --primary: #222222;
-    --secondary: #09a57c;
-    --accent: #0077cc;
-    --muted: #f7f7f7;
-    --shadows: rgba(0, 0, 0, 0.25);
-}
-
 
 
 
@@ -107,7 +97,6 @@ footer p {
     color: var(--primary);
     opacity: 0.75;
     word-spacing: 0.4em;  /* double space words */
-    transition: color 0.3s ease;
 }
 
 
