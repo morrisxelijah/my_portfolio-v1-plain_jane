@@ -1,23 +1,25 @@
 /* ----------------------------
-   CSS VARIABLES (LIGHT MODE)
+   css variables  (light mode default)
 ----------------------------- */
 
 :root {
+    /* base palette (light) */
     --bg: #ffffff;
     --primary: #222222;
     --secondary: #09a57c;
     --accent: #0077cc;
     --muted: #f7f7f7;
-    --shadows: rgba(0, 0, 0, 0.25);  /* rgb is easier to adjust opacity dynamically */
+    --shadows: rgba(0 0 0 / 0.25);    /* rgb → new css color-mix syntax */
 
-    /* corresponding dark values kept together for clarity */
+    /* dark palette (alt colors) */
     --dark-bg: #121929;
     --dark-primary: #d5d5d5;
     --dark-secondary: #01f3caca;
     --dark-accent: #00c8ffee;
     --dark-muted: #0c101be6;
-    --dark-shadows: rgba(255, 255, 255, 0.2);  /* lighter for visual effect */
+    --dark-shadows: rgba(255 255 255 / 0.20);    /* lighter for visual effect */
 
+    /* fonts */
     --font-reg: 'Helvetica Neue', sans-serif;
     --font-fun: 'Comic Sans MS', sans-serif;
     --font-accent: 'Comic Neue', cursive;
@@ -27,55 +29,7 @@
     --popout-left: 10%;
 }
 
-
-
-/* --------------------------------------
-   THEME ICON WRAPPER  (mobile + desktop)
--------------------------------------- */
-.theme-toggle {
-    display: inline-block;  /* gives width/height effect */
-    position: relative;  /* creates a stacking context */
-    width: 1.75rem;
-    height: 1.75rem;
-    cursor: pointer;  /* tap target shows it’s clickable */
-    z-index: 10;  /* ensure tap always hits the label */
-}
-
-/* both img tags sit absolutely on top of each other */
-.theme-toggle img {
-    position: absolute;
-    margin: auto;  /* center icon inside wrapper */
-    inset: 0;  /* fill wrapper */
-    width: 1.75rem;
-    height: 1.75rem;
-    transition: opacity 0.5s ease;  /* fade for smoothness */
-}
-
-/* light icon visible (default) */
-.light-icon {
-    opacity: 1;
-}
-
-.dark-icon {
-    opacity: 0;
-}
-
-/* dark mode (flips the icon in view) */
-[data-theme="dark"] .light-icon {
-    opacity: 0;
-}
-
-[data-theme="dark"] .dark-icon {
-    opacity: 1;
-}
-
-
-
-/* ----------------------------
-   CSS VARIABLES (DARK MODE)
------------------------------ */
-
-/* manual toggle overrides */
+/* manual dark toggle overrides */
 [data-theme="dark"] {
     --bg: var(--dark-bg);
     --primary: var(--dark-primary);
@@ -87,22 +41,41 @@
 
 
 
+/* --------------------------------------
+   theme icon (wrapper + images)
+-------------------------------------- */
 
-/* ----------------------------
-   TYPOGRAPHY & THEME-AWARE TEXT
------------------------------ */
-
-.tagline,
-footer p {
-    color: var(--primary);
-    opacity: 0.75;
-    word-spacing: 0.4em;  /* double space words */
+.theme-toggle {
+    position: relative;    /* stacking context */
+    inline-size: 1.75rem;
+    block-size: 1.75rem;
+    display: inline-block;    /* gives width/height effect */
+    cursor: pointer;    /* tap target hint */
+    z-index: 10;    /* ensure tap always hits the label */
 }
 
+.theme-toggle img {
+    position: absolute;    /* both img tags sit on top of each other */
+    inset: 0;    /* fills wrapper */
+    margin: auto;    /* center icon in wrapper */
+    inline-size: 1.75rem;
+    block-size: 1.75rem;
+    transition: opacity 0.5s ease;    /* fade for smoothness */
+    pointer-events: none;    /* lets click pass through to checkbox */
+}
+
+/* light icon visible (default) */
+.light-icon { opacity: 1; }
+.dark-icon { opacity: 0; }
+
+/* dark mode (flips the icon in view) */
+[data-theme="dark"] .light-icon { opacity: 0; }
+[data-theme="dark"] .dark-icon { opacity: 1; }
+
 
 
 /* ----------------------------
-   CSS RESET / BASE STYLES
+   reset + base layout
 ----------------------------- */
 
 *,
@@ -125,24 +98,33 @@ body {
     min-height: 100vh;
 }
 
-/* keep icon on-screen (small widths) */
-header {
-    padding: 5%;
+/* global fade every top-level surface surface */
+:where(html, body, main.site, header, footer) {
+    transition: background-color 0.55s ease,  color 0.55s ease;
+}
+
+/* inherit bg var directly (smoother transition) */
+header,
+footer { background: var(--bg); }
+
+/* keep header padding flexible on mobile */
+header { padding: 3%; }
+
+
+
+/* ----------------------------
+   typography
+----------------------------- */
+
+.tagline,
+footer p {
+    color: var(--primary);
+    opacity: 0.75;
+    word-spacing: 0.4em;    /* double-space words */
 }
 
 
-
-/* force header & footer to adopt theme background */
-[data-theme] header,
-[data-theme] footer {
-    background-color: var(--bg);
-}
-
-
-
-/* --------------------------------------
-   HERO SECTION STYLES
--------------------------------------- */
+/* hero section  */
 
 .hero {
     text-align: center;
@@ -151,8 +133,8 @@ header {
 
 .hero h1 {
     font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+    font-weight: 700;
+    margin-block-end: 0.5rem;
 }
 
 .hero .hi {
@@ -166,28 +148,23 @@ header {
     font-weight: 800;
 }
 
-main {
-    flex: 1;  /* fills remaining height to push footer down */
-}
 
-main#home {
-    text-align: center;
-    padding: 2rem 1rem;
-}
+/* fills extra page height to push down footer */
+main { flex: 1; }
 
 
 
-/* --------------------------------------
-   ICON GRID STYLES
--------------------------------------- */
+/* ----------------------------
+   icon grid
+----------------------------- */
 
 .icon-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* mobile-first: 3 columns stacked, equally spaced */
+    grid-template-columns: repeat(3, 1fr);    /* mobile-first: 3 columns stacked, equally spaced */
     /* maybe use for dynamic icon count:  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
-    gap: 1rem;  /* spacing between icons */
-    max-width: 800px;  /* prevent grid from being too wide */
-    margin: 0 auto;  /* center grid horizontally */
+    gap: 1rem;    /* spacing between icons */
+    max-width: 800px;    /* prevent grid from being too wide */
+    margin: 0 auto;    /* center grid horizontally */
     padding: 1rem;
 }
 
@@ -195,31 +172,30 @@ main#home {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-decoration: none;  /* take out underline */
+    text-decoration: none;    /* take out underline */
     color: var(--muted);
-    background-color: var(--secondary);
+    background: var(--secondary);
     padding: 1rem;
     border-radius: 0.75rem;
     transition: transform 0.2s ease;
 }
 
 .icon-item img {
-    width: clamp(32px, 6vw, 64px);  /* start small on mobile; grow with the screen; stop growing on desktop */
-    height: clamp(32px, 6vw, 64px);
-    margin-bottom: 0.5rem;
+    inline-size: clamp(32px, 6vw, 64px);    /* start small on mobile; grow with the screen; stop growing on desktop */
+    block-size: clamp(32px, 6vw, 64px);
+    margin-block-end: 0.5rem;
 }
 
-.icon-item:hover,
-.icon-item:focus {
+.icon-item:is(:hover, :focus) {
     transform: scale(1.1);
-    outline: none;  /* for keyboard shortcuts */
+    outline: none;
 }
 
 
 
-/* --------------------------------------
-   FOOTER / WAVE
--------------------------------------- */
+/* ----------------------------
+   footer + wave
+----------------------------- */
 
 footer {
     font-size: 0.8rem;
@@ -229,75 +205,61 @@ footer {
 }
 
 .wave-image {
-    width: 100%;
+    inline-size: 100%;
     display: block;
-    margin-top: 2rem;
+    margin-block-start: 2rem;
 }
 
 
 
 /* ----------------------------
-   APP WINDOWS (HIDDEN BY DEFAULT)
+   app windows (hidden by default)
 ----------------------------- */
 
-.window {
-    display: none;  /* toggle using :checked logic */
-}
+/* toggle using :checked logic */
+.window { display: none; }
 
-.dark-mode-only {
-    display: none;
-}
+.dark-mode-only { display: none; }
 
-[data-theme="dark"] .dark-mode-only {
-    display: block;
-}
-
-
-
-/* ----------------------------
-   WINDOW TOGGLE LOGIC
------------------------------ */
+[data-theme="dark"] .dark-mode-only { display: block; }
 
 /* when the checkbox is toggled, show the app window */
 .window-toggle:checked + .icon-item + .window {
     display: block;
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 79vh;
+    inset-block-end: 0;
+    inset-inline: 0;
+    inline-size: 100%;
+    block-size: 79vh;
     background: var(--bg);
     color: var(--primary);
-    border-radius: 1rem 1rem 0 0;  /* top corners only */
-    box-shadow: 0 -0.5rem 2rem var(--shadows);  /* rgb is easier to adjust opacity dynamically */
-    z-index: 100;  /* make sure app window appears above all other elements*/
+    border-radius: 1rem 1rem 0 0;    /* top corners only */
+    box-shadow: 0 -0.5rem 2rem var(--shadows);    /* rgb is easier to adjust opacity dynamically */
+    z-index: 100;    /* make sure app window appears above all other elements*/
     padding-bottom: 1rem;
-    overflow-y: auto;  /* allow scrolling if content exceeds view limit */
-    animation: slide-up 0.58s ease-out both;  /* botoom sheet looks like it was pulled out of a drawer*/
+    overflow-y: auto;    /* allow scrolling if content exceeds view limit */
+    animation: slide-up 0.48s ease-out both;    /* botoom sheet looks like it was pulled out of a drawer*/
 }
 
 .window-bar {
-    border-top-left-radius: 1rem;
-    border-top-right-radius: 1rem;
+    border-radius: 1rem 1rem 0 0;
     display: flex;
-    flex-direction: column;  /* vertical stack: handle on top, title bar below */
-    align-items: stretch;
-    align-items: stretch;
+    flex-direction: column;    /* vertical stack: handle on top, title bar below */
     padding: 0.25rem 0.75rem 0.75rem;
     font-size: 1.15rem;
-    background-color: var(--muted);
+    background: var(--muted);
 }
 
 /* row with title and close button */
 .window-bar-inner {
     display: flex;
     justify-content: space-between;
-    align-items: center; /* vertically align title and ✕ */
+    align-items: center;    /* vertically align title and ✕ */
 }
 
+
 .window-title {
-    font-weight: bold;
+    font-weight: 700;
     text-transform: uppercase;
     text-align: left;
     color: var(--secondary);
@@ -310,54 +272,38 @@ footer {
 }
 
 .drag-handle {
-    width: 40px;
-    height: 5px;
-    background-color: var(--primary);
+    inline-size: 40px;
+    block-size: 5px;
+    background: var(--primary);
     border-radius: 4px;
-    margin: 0.5rem auto 0.25rem auto;
-    box-shadow: 0 1px 3px var(--shadows);  /* make it feel lifted */
+    margin: 0.5rem auto 0.25rem;
+    box-shadow: 0 1px 3px var(--shadows);    /* make it feel lifted */
     opacity: 0.6;
-    animation: handle-bounce 3s ease-out 1;  /* suggest interactivity */
-    cursor: pointer;  /* make the bar look clickable */
+    animation: handle-bounce 3s ease-out 1;    /* suggest interactivity */
+    cursor: pointer;    /* make the bar look clickable */
 }
 
 /* subtle handle bounce animation */
 @keyframes handle-bounce {
-    0% {
-        transform: translateY(-6px);
-        opacity: 0;
-    }
+    0% { transform: translateY(-6px);  opacity: 0; }
 
-    50% {
-        transform: translateY(0);
-        opacity: 0.7;
-    }
+    50% { transform: none;  opacity: 0.7; }
 
-    75% {
-        transform: translateY(-1px);
-        opacity: 0.7;
-    }
+    75% { transform: translateY(-1px);  opacity: 0.7; }
 
-    100% {
-        transform: translateY(0);
-        opacity: 0.6;
-    }
+    100% { transform: none;  opacity: 0.6; }
 }
 
 /* need JS to add delay based on click order */
 @keyframes slide-up {
-    from {
-        transform: translateY(100%);
-        opacity: 0.12;
-    }
+    from { transform: translateY(100%);  opacity: 0.12; }
 
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+    to { transform: none;  opacity: 1; }
 }
 
-/* visual slide-down needs JS: css can't animate unchecked/closed element */
+
+/* adding visual slide-down needs JS: css can't animate unchecked/closed element */
+
 
 .window-content {
     padding: 1rem;
@@ -365,14 +311,13 @@ footer {
 }
 
 
-
 /* ----------------------------
-   ALT TABLET / DESKTOP VIEW
+   larger screens (tablets and computers)
 ----------------------------- */
 
-@media (min-width: 768px) {
+@media (min-width:768px) {
     .icon-grid {
-        grid-template-columns: repeat(6, 1fr);  /* 1 row with 6 icons */
+        grid-template-columns: repeat(6, 1fr);    /* 1 row with 6 icons */
     }
 
     .drag-handle {
@@ -384,17 +329,12 @@ footer {
     }
 
     .window-toggle:checked + .icon-item + .window {
-        top: var(--popout-top);
-        left: var(--popout-left);
-        width: 90%;
-        max-width: 480px;
-        max-height: 50vh;  /* 50% of viewport height */
+        inset-block-start: var(--popout-top);
+        inset-inline-start: var(--popout-left);
+        inline-size: 90%;
+        max-inline-size: 480px;
+        max-block-size: 50vh;    /* 50% of viewport height */
         border-radius: 1rem;
-        animation: slide-up 0.2s ease both;
+        animation: slide-up 0.2s ease both;    /* quicker pop up on desktop */
     }
-}
-
-/* smooth fade for every top-level surface */
-html, body, main.site, header, footer {
-    transition: background-color .6s ease, color .6s ease;
 }
