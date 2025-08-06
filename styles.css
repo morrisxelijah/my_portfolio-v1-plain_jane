@@ -27,6 +27,11 @@
     /* randomize later with JS (make sure to add bounds maxes) */
     --popout-top: 30%;
     --popout-left: 10%;
+
+    /* icon grid clarity */
+    --gap: 1rem;
+    --mobile-cols: 3;
+    --desktop-cols: 6;
 }
 
 /* manual dark toggle overrides */
@@ -35,7 +40,7 @@
     --primary: var(--dark-primary);
     --secondary: var(--dark-secondary);
     --accent: var(--dark-accent);
-    --muted: var(--dark-muted);
+    --muted: var(--dark-muted);ff
     --shadows: var(--dark-shadows);
 }
 
@@ -159,17 +164,23 @@ main { flex: 1; }
 ----------------------------- */
 
 .icon-grid {
-    display: grid;
+    display: flex;
+    /* DEPRECIATED */
     /* grid-template-columns: repeat(auto-fit, minmax(clamp(90px, 30%, 1fr), 1fr)); */
     /* grid-template-columns: repeat(3, 1fr);   mobile-first: 3 columns stacked, equally spaced */
-    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); /* use for dynamic icon count */
+    /* grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));  use for dynamic icon count */
+    flex-wrap: wrap;
     gap: 1rem;    /* spacing between icons */
     justify-content: center;    /* center the last row */
-    max-width: 800px;    /* prevent grid from being too wide */
+    max-width: 900px;    /* prevent grid from being too wide */
     margin: 0 auto;    /* center grid horizontally */
     padding: 1rem;
-    --ghost: calc(100% + 1rem);    /* helper for the pseudo trick below */
-    position: relative;    /* establishes containing-block */
+}
+
+.icon-grid > .icon-wrapper {    /* select direct children  ;  each wrapper becomes a flex-item */
+    /* starting width: flex-basis */
+    flex: 1 1 calc((100% - (var(--mobile-cols) - 1)*var(--gap)) / var(--mobile-cols)); /* grow / shrink equally ; base width is for a fully populated row */
+    max-width: calc((100% - (var(--mobile-cols) - 1)*var(--gap)) / var(--mobile-cols)); /* keep overlow cards the same size as  */
 }
 
 .icon-item {
@@ -316,7 +327,7 @@ footer {
    dark mode only visibility
 ----------------------------- */
 
-/* DEPRICATED: .dark-mode-only --  cascading is kicking my butt ; trying a JS script for now */
+/* DEPRECATED: .dark-mode-only --  cascading is kicking my butt ; trying a JS script for now */
 
 
 
@@ -325,10 +336,15 @@ footer {
 ----------------------------- */
 
 @media (min-width:768px) {
-    .icon-grid {
+    .icon-grid { /* DEPRECIATED */
         /* grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); */
-        grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+        /* grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr)); */
         /* grid-template-columns: repeat(6, 1fr);     1 row with 6 icons */
+    }
+
+    .icon-grid > .icon-wrapper {
+        flex: 1 1 calc((100% - (var(--desktop-cols) - 1)*var(--gap)) / var(--desktop-cols)); /* visible icons take up all available space */
+        /* max-width: calc((100% - (var(--desktop-cols) - 1)*var(--gap)) / var(--desktop-cols)); */
     }
 
     .drag-handle {
