@@ -1,47 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
-
+<html lang="en">   <!-- data-theme will be injected by the tiny script below -->
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Personal landing page and interactive resume" />
-  <title>eli's  portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="interactive resume and personal landing page" />
+    <title>eli's  portfolio</title>
 
-  <!-- favicon (later) -->
-  <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
+
+    <!-- main stylesheet (loads after theme has been stamped) -->
+    <link rel="stylesheet" href="styles.css" />
+
+
+    <!-- favicon (later) -->
+    <link rel="icon" type="image/png" href="assets/icons/favicon.png" />
 </head>
 
 
 <body>
 
-
-  <!-- toggle section -->
+  <!-- page toggles -->
   <header>
-    <!-- light/dark mode toggle placeholder -->
+    <!-- light/dark mode toggle -->
+    <div class="theme-wrapper">
+        <input type="checkbox" id="theme-toggle" hidden>
+        <label for="theme-toggle" class="theme-toggle" aria-label="change theme (light/dark mode)">
+            <img class="theme-icon light-icon" src="assets/icons/sun.svg"  alt="light mode" />
+            <img class="theme-icon dark-icon"  src="assets/icons/moon.svg" alt="dark mode"  />
+        </label>
+    </div>
+
     <!-- music toggle placeholder -->
   </header>
 
 
-  <main id="home">
-    <!-- hero section: intro, healdine/tagline -->
+  <main class="site">
+    <!-- hero section (intro, headline/tagline) -->
     <section class="hero">
         <h1>
-        <span class="hi">hey there!</span>&nbsp;<span class="highlight-name"> i'm elijah</span>
+            <span class="hi">hey there!</span>&nbsp;<span class="highlight-name"> i'm elijah</span>
         </h1>
         <p class="tagline">tinkerer, maker, life-long learner</p>
     </section>
 
-    <!-- icon navigation begins -->
+    <!-- icon navigation -->
     <nav class="icon-grid">
 
-
         <!-- about -->
-        <div class="wrapper">
+        <div class="icon-wrapper">
             <input type="checkbox" id="toggle-about" class="window-toggle" hidden />
 
-            <label for="toggle-about" class="icon-item" aria-label="about">
+            <label for="toggle-about" class="icon-item" aria-label="about section">
                 <img src="assets/icons/about.svg" alt="about icon" />
                 <p>about</p>
             </label>
@@ -65,10 +74,10 @@
         </div>
 
         <!-- links -->
-        <div class="wrapper">
+        <div class="icon-wrapper">
             <input type="checkbox" id="toggle-links" class="window-toggle" hidden />
 
-            <label for="toggle-links" class="icon-item" aria-label="links">
+            <label for="toggle-links" class="icon-item" aria-label="links section">
                 <img src="assets/icons/links.svg" alt="links icon" />
                 <p>links</p>
             </label>
@@ -87,34 +96,34 @@
             </section>
         </div>
 
-        <!-- work -->
-        <div class="wrapper">
-            <input type="checkbox" id="toggle-work" class="window-toggle" hidden />
+        <!-- experience -->
+        <div class="icon-wrapper">
+            <input type="checkbox" id="toggle-experience" class="window-toggle" hidden />
 
-            <label for="toggle-work" class="icon-item" aria-label="work experience">
+            <label for="toggle-experience" class="icon-item" aria-label="experience section">
                 <img src="assets/icons/experience.svg" alt="experience icon" />
-                <p>work</p>
+                <p>experience</p>
             </label>
 
-            <section id="work" class="window">
+            <section id="experience" class="window">
                 <div class="window-bar">
                     <div class="drag-handle"></div>
                     <div class="window-bar-inner">
-                        <p class="window-title">work</p>
-                        <label for="toggle-work" class="close-button" aria-label="close the work window">x</label>
+                        <p class="window-title">exp</p>
+                        <label for="toggle-experience" class="close-button" aria-label="close the work window">x</label>
                     </div>
                 </div>
                 <div class="window-content">
-                    <p>this is the work window</p>
+                    <p>this is the experience window</p>
                 </div>
             </section>
         </div>
 
         <!-- faq -->
-        <div class="wrapper">
+        <div class="icon-wrapper">
             <input type="checkbox" id="toggle-faq" class="window-toggle" hidden />
 
-            <label for="toggle-faq" class="icon-item" aria-label="frequently asked questions">
+            <label for="toggle-faq" class="icon-item" aria-label="frequently asked questions section">
                 <img src="assets/icons/faq.svg" alt="faq icon" />
                 <p>faq</p>
             </label>
@@ -134,10 +143,10 @@
         </div>
 
         <!-- contact -->
-        <div class="wrapper">
+        <div class="icon-wrapper">
             <input type="checkbox" id="toggle-contact" class="window-toggle" hidden />
 
-            <label for="toggle-contact" class="icon-item" aria-label="contact">
+            <label for="toggle-contact" class="icon-item" aria-label="contact section">
                 <img src="assets/icons/contact.svg" alt="contact icon" />
                 <p>contact</p>
             </label>
@@ -157,10 +166,10 @@
         </div>
 
         <!-- random -->
-        <div class="wrapper">
+        <div class="icon-wrapper">
             <input type="checkbox" id="toggle-random" class="window-toggle" hidden />
 
-            <label for="toggle-random" class="icon-item" aria-label="random">
+            <label for="toggle-random" class="icon-item" aria-label="random section">
                 <img src="assets/icons/random.svg" alt="random icon" />
                 <p>random</p>
             </label>
@@ -188,7 +197,8 @@
     <p>&copy 2025 ELIJAH MORRIS</p>
   </footer>
 
+  <!-- wait for the document to load before running js features -->
+  <script src="script.js" defer></script>
 
 </body>
-
 </html>

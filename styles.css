@@ -1,21 +1,72 @@
 /* ----------------------------
    CSS VARIABLES (LIGHT MODE)
 ----------------------------- */
+
 :root {
     --bg: #ffffff;
     --primary: #222222;
     --secondary: #09a57c;
     --accent: #0077cc;
     --muted: #f7f7f7;
+    --shadows: rgba(0, 0, 0, 0.25);  /* rgb is easier to adjust opacity dynamically */
+
+    /* corresponding dark values kept together for clarity */
+    --dark-bg: #121929;
+    --dark-primary: #d5d5d5;
+    --dark-secondary: #01f3caca;
+    --dark-accent: #00c8ffee;
+    --dark-muted: #0c101be6;
+    --dark-shadows: rgba(255, 255, 255, 0.2);  /* lighter for visual effect */
 
     --font-reg: 'Helvetica Neue', sans-serif;
     --font-fun: 'Comic Sans MS', sans-serif;
     --font-accent: 'Comic Neue', cursive;
 
-    /* add JS later to dynamically generate randomly (make sure to add bounds maxes) 
-       maybe animate to pop out of the icon that triggered it */
+    /* randomize later with JS (make sure to add bounds maxes) */
     --popout-top: 30%;
     --popout-left: 10%;
+}
+
+
+
+/* --------------------------------------
+   THEME ICON WRAPPER  (mobile + desktop)
+-------------------------------------- */
+.theme-toggle {
+    display: inline-block;  /* gives width/height effect */
+    position: relative;  /* creates a stacking context */
+    width: 1.75rem;
+    height: 1.75rem;
+    cursor: pointer;  /* tap target shows it’s clickable */
+    z-index: 10;  /* ensure tap always hits the label */
+}
+
+/* both img tags sit absolutely on top of each other */
+.theme-toggle img {
+    position: absolute;
+    margin: auto;  /* center icon inside wrapper */
+    inset: 0;  /* fill wrapper */
+    width: 1.75rem;
+    height: 1.75rem;
+    transition: opacity 0.5s ease;  /* fade for smoothness */
+}
+
+/* light icon visible (default) */
+.light-icon {
+    opacity: 1;
+}
+
+.dark-icon {
+    opacity: 0;
+}
+
+/* dark mode (flips the icon in view) */
+[data-theme="dark"] .light-icon {
+    opacity: 0;
+}
+
+[data-theme="dark"] .dark-icon {
+    opacity: 1;
 }
 
 
@@ -23,12 +74,40 @@
 /* ----------------------------
    CSS VARIABLES (DARK MODE)
 ----------------------------- */
+
+/* manual toggle overrides */
 [data-theme="dark"] {
-    --bg: #0b0f1a;
-    --primary: #e0e0e0;
-    --secondary: #03f8cfe1;
-    --accent: #00c8ff;
-    --muted: #111827;
+    --bg: var(--dark-bg);
+    --primary: var(--dark-primary);
+    --secondary: var(--dark-secondary);
+    --accent: var(--dark-accent);
+    --muted: var(--dark-muted);
+    --shadows: var(--dark-shadows);
+}
+
+/* manual light override (beats prefers-color-scheme) */
+[data-theme="light"] {
+    --bg: #ffffff;
+    --primary: #222222;
+    --secondary: #09a57c;
+    --accent: #0077cc;
+    --muted: #f7f7f7;
+    --shadows: rgba(0, 0, 0, 0.25);
+}
+
+
+
+
+/* ----------------------------
+   TYPOGRAPHY & THEME-AWARE TEXT
+----------------------------- */
+
+.tagline,
+footer p {
+    color: var(--primary);
+    opacity: 0.75;
+    word-spacing: 0.4em;  /* double space words */
+    transition: color 0.3s ease;
 }
 
 
@@ -36,6 +115,7 @@
 /* ----------------------------
    CSS RESET / BASE STYLES
 ----------------------------- */
+
 *,
 *::before,
 *::after {
@@ -56,28 +136,28 @@ body {
     min-height: 100vh;
 }
 
-
-
-/* ----------------------------
-   LAYOUT PLACEHOLDER STYLES
------------------------------ */
-
+/* keep icon on-screen (small widths) */
 header {
-    padding: .25rem;
-    display: flex;
-    justify-content: flex-start;
-    gap: 1rem;
+    padding: 5%;
+}
+
+
+
+/* force header & footer to adopt theme background */
+[data-theme] header,
+[data-theme] footer {
+    background-color: var(--bg);
 }
 
 
 
 /* --------------------------------------
    HERO SECTION STYLES
-   -------------------------------------- */
+-------------------------------------- */
 
 .hero {
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 1rem;
 }
 
 .hero h1 {
@@ -97,17 +177,8 @@ header {
     font-weight: 800;
 }
 
-.tagline {
-    font-size: 1rem;
-    color: var(--text);
-    opacity: 0.75;
-    max-width: 60ch;
-    margin: 0 auto;
-    word-spacing: 0.4em; /* double space words */
-}
-
 main {
-    flex: 1; /* fills remaining height to push footer to the bottom */
+    flex: 1;  /* fills remaining height to push footer down */
 }
 
 main#home {
@@ -119,16 +190,15 @@ main#home {
 
 /* --------------------------------------
    ICON GRID STYLES
-   -------------------------------------- */
+-------------------------------------- */
 
 .icon-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* mobile-first: 3 columns stacked */
-    /* maybe use for dynamic icon count:  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));*/
-
-    gap: 1rem; /* spacing between icons */
-    max-width: 800px; /* prevent grid from being too wide */
-    margin: 0 auto; /* center grid horizontally */
+    grid-template-columns: repeat(3, 1fr); /* mobile-first: 3 columns stacked, equally spaced */
+    /* maybe use for dynamic icon count:  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); */
+    gap: 1rem;  /* spacing between icons */
+    max-width: 800px;  /* prevent grid from being too wide */
+    margin: 0 auto;  /* center grid horizontally */
     padding: 1rem;
 }
 
@@ -136,34 +206,37 @@ main#home {
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-decoration: none; /* take out underline */
-    color: var(--primary);
-    background-color: var(--muted);
+    text-decoration: none;  /* take out underline */
+    color: var(--muted);
+    background-color: var(--secondary);
     padding: 1rem;
     border-radius: 0.75rem;
     transition: transform 0.2s ease;
 }
 
 .icon-item img {
-    width: clamp(32px, 6vw, 64px); /* start small on mobile; grow with the screen; stop growing on desktop*/
-    height: clamp(32px, 6vw, 64px); /* start small on mobile; grow with the screen; stop growing on desktop*/;
+    width: clamp(32px, 6vw, 64px);  /* start small on mobile; grow with the screen; stop growing on desktop */
+    height: clamp(32px, 6vw, 64px);
     margin-bottom: 0.5rem;
 }
 
 .icon-item:hover,
 .icon-item:focus {
     transform: scale(1.1);
-    outline: none; /* for keyboard shortcuts*/
+    outline: none;  /* for keyboard shortcuts */
 }
 
 
+
+/* --------------------------------------
+   FOOTER / WAVE
+-------------------------------------- */
 
 footer {
     font-size: 0.8rem;
     font-family: var(--font-reg);
     text-align: center;
     padding: 2rem 1rem;
-    background: transparent;
 }
 
 .wave-image {
@@ -174,10 +247,10 @@ footer {
 
 
 
-
 /* ----------------------------
    APP WINDOWS (HIDDEN BY DEFAULT)
 ----------------------------- */
+
 .window {
     display: none;  /* toggle using :checked logic */
 }
@@ -192,12 +265,11 @@ footer {
 
 
 
-
 /* ----------------------------
    WINDOW TOGGLE LOGIC
 ----------------------------- */
 
-/* when the checkbox is checked, show the app window */
+/* when the checkbox is toggled, show the app window */
 .window-toggle:checked + .icon-item + .window {
     display: block;
     position: fixed;
@@ -208,27 +280,20 @@ footer {
     height: 79vh;
     background: var(--bg);
     color: var(--primary);
-    border-radius: 1rem 1rem 0 0; /* top corners only */
-    box-shadow: 0 -0.5rem 2rem rgba(0, 0, 0, 0.2);  /* rgb is easier to adjust opacity dynamically */
+    border-radius: 1rem 1rem 0 0;  /* top corners only */
+    box-shadow: 0 -0.5rem 2rem var(--shadows);  /* rgb is easier to adjust opacity dynamically */
     z-index: 100;  /* make sure app window appears above all other elements*/
     padding-bottom: 1rem;
     overflow-y: auto;  /* allow scrolling if content exceeds view limit */
-    animation: slide-up 0.58s ease-out both; /* botoom sheet looks like it was pulled out of a drawer*/
+    animation: slide-up 0.58s ease-out both;  /* botoom sheet looks like it was pulled out of a drawer*/
 }
-
-/* .window-toggle:not(:checked)+.icon-item+.app-window {
-    animation: slide-down 0.5s ease-in;
-} not working yet, need JS */
-
 
 .window-bar {
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
     display: flex;
-    justify-content: space-between;
     flex-direction: column;  /* vertical stack: handle on top, title bar below */
+    align-items: stretch;
     align-items: stretch;
     padding: 0.25rem 0.75rem 0.75rem;
     font-size: 1.15rem;
@@ -251,9 +316,8 @@ footer {
 
 .close-button {
     font-size: 1.2rem;
-    cursor: pointer; /* make the x look clickable */
+    cursor: pointer;
     color: var(--primary);
-
 }
 
 .drag-handle {
@@ -262,13 +326,13 @@ footer {
     background-color: var(--primary);
     border-radius: 4px;
     margin: 0.5rem auto 0.25rem auto;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* make it feel lifted */
+    box-shadow: 0 1px 3px var(--shadows);  /* make it feel lifted */
     opacity: 0.6;
     animation: handle-bounce 3s ease-out 1;  /* suggest interactivity */
     cursor: pointer;  /* make the bar look clickable */
 }
 
-/* animate the handle with a subtle bounce */
+/* subtle handle bounce animation */
 @keyframes handle-bounce {
     0% {
         transform: translateY(-6px);
@@ -276,22 +340,22 @@ footer {
     }
 
     50% {
-        transform: translateY(0px);
+        transform: translateY(0);
         opacity: 0.7;
     }
 
     75% {
-        transform: translateY(-1.1px);
+        transform: translateY(-1px);
         opacity: 0.7;
     }
 
     100% {
-        transform: translateY(0px);
+        transform: translateY(0);
         opacity: 0.6;
     }
 }
 
-/* maybe need JS to add delay based on click order*/
+/* need JS to add delay based on click order */
 @keyframes slide-up {
     from {
         transform: translateY(100%);
@@ -299,23 +363,12 @@ footer {
     }
 
     to {
-        transform: translateY(0%);
+        transform: translateY(0);
         opacity: 1;
     }
 }
 
-/* maybe need JS to show sliding down animation when window is closed*/
-@keyframes slide-down {
-    from {
-        transform: translateY(0%);
-        opacity: 1;
-    }
-
-    to {
-        transform: translateY(100%);
-        opacity: 0;
-    }
-}
+/* visual slide-down needs JS: css can't animate unchecked/closed element */
 
 .window-content {
     padding: 1rem;
@@ -324,16 +377,11 @@ footer {
 
 
 
-
 /* ----------------------------
    ALT TABLET / DESKTOP VIEW
 ----------------------------- */
 
 @media (min-width: 768px) {
-    header {
-            padding: 2rem;
-        }
-
     .icon-grid {
         grid-template-columns: repeat(6, 1fr);  /* 1 row with 6 icons */
     }
@@ -349,11 +397,15 @@ footer {
     .window-toggle:checked + .icon-item + .window {
         top: var(--popout-top);
         left: var(--popout-left);
-        transform: none;
         width: 90%;
         max-width: 480px;
         max-height: 50vh;  /* 50% of viewport height */
         border-radius: 1rem;
         animation: slide-up 0.2s ease both;
     }
+}
+
+/* smooth fade for every top-level surface */
+html, body, main.site, header, footer {
+    transition: background-color .6s ease, color .6s ease;
 }
