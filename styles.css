@@ -105,7 +105,7 @@ body {
 
 /* global fade every top-level surface surface */
 :where(html, body, main.site, header, footer) {
-    transition: background-color 0.55s ease,  color 0.55s ease;
+    transition: background-color 0.75s ease,  color 0.55s ease;
 }
 
 /* inherit bg var directly (smoother transition) */
@@ -165,10 +165,6 @@ main { flex: 1; }
 
 .icon-grid {
     display: flex;
-    /* DEPRECIATED */
-    /* grid-template-columns: repeat(auto-fit, minmax(clamp(90px, 30%, 1fr), 1fr)); */
-    /* grid-template-columns: repeat(3, 1fr);   mobile-first: 3 columns stacked, equally spaced */
-    /* grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));  use for dynamic icon count */
     flex-wrap: wrap;
     gap: 1rem;    /* spacing between icons */
     justify-content: center;    /* center the last row */
@@ -182,6 +178,35 @@ main { flex: 1; }
     flex: 1 1 calc((100% - (var(--mobile-cols) - 1)*var(--gap)) / var(--mobile-cols)); /* grow / shrink equally ; base width is for a fully populated row */
     max-width: calc((100% - (var(--mobile-cols) - 1)*var(--gap)) / var(--mobile-cols)); /* keep overlow cards the same size as  */
 }
+
+/* collapse random icon card smoothly when light-mode is active */
+.icon-wrapper.off {
+    flex-basis: 0 !important;
+    max-width: 0 !important;
+    opacity: 0;
+    pointer-events: none;
+    margin: 0;    /* remove 1rem gap so neighbours slide in */
+
+}
+
+
+/* smooth grid transitions */
+body.ready .icon-grid > .icon-wrapper {
+    transition:
+        flex-basis 0.2s ease,
+        max-width 0.6s ease,
+        opacity 0.6s ease,
+        margin 0.6s ease;
+}
+
+body.ready .icon-wrapper.off {
+    transition:
+        flex-basis 0.2s ease,
+        max-width 0.2s ease,
+        opacity 0.2s ease,
+        margin 0.2s ease;
+}
+
 
 .icon-item {
     display: flex;
@@ -323,28 +348,15 @@ footer {
 
 
 
-/* ----------------------------
-   dark mode only visibility
------------------------------ */
-
-/* DEPRECATED: .dark-mode-only --  cascading is kicking my butt ; trying a JS script for now */
-
-
 
 /* ----------------------------
    larger screens (tablets and computers)
 ----------------------------- */
 
 @media (min-width:768px) {
-    .icon-grid { /* DEPRECIATED */
-        /* grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); */
-        /* grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr)); */
-        /* grid-template-columns: repeat(6, 1fr);     1 row with 6 icons */
-    }
 
     .icon-grid > .icon-wrapper {
         flex: 1 1 calc((100% - (var(--desktop-cols) - 1)*var(--gap)) / var(--desktop-cols)); /* visible icons take up all available space */
-        /* max-width: calc((100% - (var(--desktop-cols) - 1)*var(--gap)) / var(--desktop-cols)); */
     }
 
     .drag-handle {
@@ -356,7 +368,7 @@ footer {
     }
 
     .window-toggle:checked + .icon-item + .window {
-        inset-block-start: var(--popout-top);
+        inset-block-start: var(--popout-top);    /* overwritten by JS per-window */
         inset-inline-start: var(--popout-left);
         inline-size: 90%;
         max-inline-size: 480px;
