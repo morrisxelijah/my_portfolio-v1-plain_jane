@@ -29,16 +29,27 @@
           class="theme-toggle"
           aria-label="change theme (light/dark mode)"
         >
-          <img
-            class="theme-icon light-icon"
-            src="assets/icons/sun.svg"
-            alt="light mode"
-          />
-          <img
-            class="theme-icon dark-icon"
-            src="assets/icons/moon.svg"
-            alt="dark mode"
-          />
+        <!-- light icon -->
+        <svg class="theme-icon light-icon" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M3 13h1" /><path d="M20 13h1" />
+            <path d="M5.6 6.6l.7 .7" /><path d="M18.4 6.6l-.7 .7" />
+            <path d="M8 13a4 4 0 1 1 8 0" />
+            <path d="M3 17h18" /><path d="M7 20h5" /><path d="M16 20h1" />
+            <path d="M12 5v-1" />
+        </svg>
+
+        <!-- dark icon -->
+        <svg class="theme-icon dark-icon" xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+            <path d="M17 4a2 2 0 0 0 2 2a2 2 0 0 0 -2 2a2 2 0 0 0 -2 -2a2 2 0 0 0 2 -2" />
+            <path d="M19 11h2m-1 -1v2" />
+        </svg>
         </label>
       </div>
 
@@ -72,7 +83,16 @@
             class="icon-item"
             aria-label="about section"
           >
-            <img src="assets/icons/about.svg" alt="about icon" />
+            <svg
+                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <!-- fill the hex with accent via CSS -->
+                <path class="about-hex" d="M19.875 6.27c.7 .398 1.13 1.143 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033z"/>
+                <!-- keep the “i” strokes visible on a filled hex -->
+                <path class="about-glyph" d="M12 9h.01"/>
+                <path class="about-glyph" d="M11 12h1v4h1"/>
+            </svg>
             <p>about</p>
           </label>
 
@@ -113,8 +133,19 @@
             class="icon-item"
             aria-label="links section"
           >
-            <img src="assets/icons/links.svg" alt="links icon" />
-            <p>links</p>
+
+          <svg class="links-icon" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M17 22v-2" />
+              <path d="M9 15l6 -6" />
+              <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" />
+              <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" />
+              <path d="M20 17h2" /><path d="M2 7h2" /><path d="M7 2v2" />
+          </svg>
+
+          <p>links</p>
           </label>
 
           <section id="links" class="window">
@@ -131,7 +162,90 @@
               </div>
             </div>
             <div class="window-content">
-              <p>this is the links window</p>
+
+
+              <!-- stacked link button list -->
+
+              <ul class="link-list">
+
+                  <li>
+                      <a class="link-btn" href="#" target="_blank" rel="noopener" aria-label="Open GitHub">
+                          <span class="link-icon" aria-hidden="true">
+                              <!-- GITHUB icon -->
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                  fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M0 0h24v24H0z" stroke="none"/>
+                                  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"/>
+                              </svg>
+                          </span>
+                          <span class="link-text">
+                              <span class="word">GitHub</span>
+                          </span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a class="link-btn" href="#" target="_blank" rel="noopener" aria-label="Open LinkedIn">
+                          <span class="link-icon" aria-hidden="true">
+                              <!-- LINKEDIN icon -->
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                  fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M0 0h24v24H0z" stroke="none"/>
+                                  <path d="M8 11v5" />
+                                  <path d="M8 8v.01" />
+                                  <path d="M12 16v-5" />
+                                  <path d="M16 16v-3a2 2 0 1 0 -4 0" />
+                                  <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4z" />
+                              </svg>
+                          </span>
+                          <span class="link-text">
+                              <span class="word">LinkedIn</span>
+                          </span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a class="link-btn" href="#" target="_blank" rel="noopener" aria-label="Open Amazon Wishlist">
+                          <span class="link-icon" aria-hidden="true">
+                              <!-- AMAZON icon -->
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                  fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M0 0h24v24H0z" stroke="none"/>
+                                  <path d="M17 12.5a15.198 15.198 0 0 1 -7.37 1.44a14.62 14.62 0 0 1 -6.63 -2.94" />
+                                  <path d="M19.5 15c.907 -1.411 1.451 -3.323 1.5 -5c-1.197 -.773 -2.577 -.935 -4 -1" />
+                              </svg>
+                          </span>
+                          <span class="link-text">
+                              <span class="word">Wishlist</span>
+                          </span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a class="link-btn" href="#" target="_blank" rel="noopener" aria-label="Open Ko-fi">
+                          <span class="link-icon" aria-hidden="true">
+                              <!-- KO-FI icon -->
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                  fill="none" stroke="currentColor" stroke-width="1.5"
+                                  stroke-linecap="round" stroke-linejoin="round">
+                                  <path d="M0 0h24v24H0z" stroke="none"/>
+                                  <path d="M3 14c.83 .642 2.077 1.017 3.5 1c1.423 .017 2.67 -.358 3.5 -1c.83 -.642 2.077 -1.017 3.5 -1c1.423 -.017 2.67 .358 3.5 1" />
+                                  <path d="M8 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2" />
+                                  <path d="M12 3a2.4 2.4 0 0 0 -1 2a2.4 2.4 0 0 0 1 2" />
+                                  <path d="M3 10h14v5a6 6 0 0 1 -6 6h-2a6 6 0 0 1 -6 -6v-5z" />
+                                  <path d="M16.746 16.726a3 3 0 1 0 .252 -5.555" />
+                              </svg>
+                          </span>
+                          <span class="link-text">
+                              <span class="word">Ko-fi</span>
+                          </span>
+                      </a>
+                  </li>
+
+              </ul>
             </div>
           </section>
         </div>
@@ -150,8 +264,17 @@
             class="icon-item"
             aria-label="experience section"
           >
-            <img src="assets/icons/experience.svg" alt="experience icon" />
-            <p>experience</p>
+
+          <svg class="exp-icon" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M19 22.5a4.75 4.75 0 0 1 3.5 -3.5a4.75 4.75 0 0 1 -3.5 -3.5a4.75 4.75 0 0 1 -3.5 3.5a4.75 4.75 0 0 1 3.5 3.5" />
+              <path d="M11.5 19h-6.5a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v5" />
+              <path d="M3 7l9 6l9 -6" />
+          </svg>
+
+          <p>experience</p>
           </label>
 
           <section id="experience" class="window">
@@ -182,8 +305,21 @@
             class="icon-item"
             aria-label="frequently asked questions section"
           >
-            <img src="assets/icons/faq.svg" alt="faq icon" />
-            <p>faq</p>
+
+          <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M12 16v.01" />
+              <path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" />
+              <path d="M10 20.777a8.942 8.942 0 0 1 -2.48 -.969" />
+              <path d="M14 3.223a9.003 9.003 0 0 1 0 17.554" />
+              <path d="M4.579 17.093a8.961 8.961 0 0 1 -1.227 -2.592" />
+              <path d="M3.124 10.5c.16 -.95 .468 -1.85 .9 -2.675l.169 -.305" />
+              <path d="M6.907 4.579a8.954 8.954 0 0 1 3.093 -1.356" />
+          </svg>
+
+          <p>faq</p>
           </label>
 
           <section id="faq" class="window">
@@ -219,8 +355,17 @@
             class="icon-item"
             aria-label="contact section"
           >
-            <img src="assets/icons/contact.svg" alt="contact icon" />
-            <p>contact</p>
+
+          <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+              <path d="M19 22.5a4.75 4.75 0 0 1 3.5 -3.5a4.75 4.75 0 0 1 -3.5 -3.5a4.75 4.75 0 0 1 -3.5 3.5a4.75 4.75 0 0 1 3.5 3.5" />
+              <path d="M11.5 19h-6.5a2 2 0 0 1 -2 -2v-10a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v5" />
+              <path d="M3 7l9 6l9 -6" />
+          </svg>
+
+          <p>contact</p>
           </label>
 
           <section id="contact" class="window">
@@ -256,8 +401,16 @@
             class="icon-item"
             aria-label="random section"
           >
-            <img src="assets/icons/random.svg" alt="random icon" />
-            <p>random</p>
+
+<svg class="random-icon" xmlns="http://www.w3.org/2000/svg"
+         viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+        <path d="M16 18a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm0 -12a2 2 0 0 1 2 2a2 2 0 0 1 2 -2a2 2 0 0 1 -2 -2a2 2 0 0 1 -2 2zm-7 12a6 6 0 0 1 6 -6a6 6 0 0 1 -6 -6a6 6 0 0 1 -6 6a6 6 0 0 1 6 6z" />
+    </svg>
+
+
+          <p>random</p>
           </label>
 
           <section id="random" class="window">

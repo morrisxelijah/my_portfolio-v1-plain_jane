@@ -14,7 +14,7 @@
     /* dark palette (alt colors) */
     --dark-bg: #121929;
     --dark-primary: #d5d5d5;
-    --dark-secondary: #01f3caca;
+    --dark-secondary: #02f1c9cd;
     --dark-accent: #00c8ffee;
     --dark-muted: #0c101be6;
     --dark-shadows: rgba(255, 255, 255, 0.25);    /* lighter for visual effect */
@@ -70,10 +70,11 @@
     z-index: 10;    /* ensure tap always hits the label */
 }
 
-.theme-toggle img {
-    position: absolute;    /* both img tags sit on top of each other */
+/* size both img and inline svg icons */
+.theme-toggle :is(img, svg) {
+    position: absolute;    /* both icons stack */
     inset: 0;    /* fills wrapper */
-    margin: auto;    /* center icon in wrapper */
+    margin: auto;    /* center in wrapper */
     inline-size: 2rem;
     block-size: 2rem;
     transition: opacity 0.5s ease;    /* fade for smoothness */
@@ -223,14 +224,23 @@ body.ready .icon-wrapper.off {
     transition: transform 0.2s ease;
 }
 
-.icon-item img {
-    inline-size: clamp(32px, 6vw, 64px);    /* start small on mobile; grow with the screen; stop growing on desktop */
-    block-size: clamp(32px, 6vw, 64px);
+.icon-item :is(img, svg) {
+    inline-size: clamp(48px, 15vw, 64px);    /* start small on mobile; grow with the screen; stop growing on desktop */
+    block-size: clamp(48px, 15vw, 64px);
     margin-block-end: 0.5rem;
     stroke: currentColor;
     fill: none;
     stroke-width: 1.5;
 }
+
+/* color the svg code icons */
+.icon-item svg { color: var(--muted); }    /* sets the STROKE color */
+.icon-item svg .accent-fill { fill: var(--accent); }    /* fills just the hex path */
+.theme-icon { color: var(--secondary); }    /* sets the STROKE color */
+.theme-icon { fill: var(--accent);    /* fills just the hex path */
+}
+
+/* fills just the hex path */
 
 .icon-item:is(:hover, :focus) {
     transform: scale(1.1);
@@ -254,7 +264,7 @@ footer {
 }
 
 /* place footer text above the waves just to be safe */
-footer>p {
+footer > p {
     position: relative;
     z-index: 2;
 }
@@ -430,7 +440,8 @@ body.is-dragging, body.is-dragging * { user-select: none; }
     font-weight: 700;
     text-transform: uppercase;
     text-align: left;
-    color: var(--secondary);
+    font-size: 1.3rem;
+    color: var(--accent);
 }
 
 .close-button {
@@ -477,6 +488,72 @@ body.is-dragging, body.is-dragging * { user-select: none; }
     padding: 1rem;
     font-size: 0.95rem;
 }
+
+
+
+
+
+
+
+/* ----------------------------
+   links window – stacked buttons
+----------------------------- */
+
+/* vertical list container */
+.link-list {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem auto 0;
+    padding: 0;
+    max-inline-size: 90vw;
+}
+
+/* each "button" is a big anchor */
+.link-btn {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    background: var(--secondary);
+    color: var(--muted);
+    padding: 1rem 1.25rem;
+    border-radius: 0.75rem;
+    transition: transform 0.2s ease;
+}
+
+/* large, legible icon */
+.link-btn .link-icon svg {
+    inline-size: clamp(2.2rem, 7vw, 3.2rem);
+    block-size: clamp(2.2rem, 7vw, 3.2rem);
+    color: currentColor;    /* tabler uses stroke="currentColor" */
+}
+
+/* label in ALL CAPS with bigger first letter per word */
+.link-btn .link-text {
+    display: inline-flex;
+    gap: 0.6rem;
+    align-items: baseline;
+    text-transform: uppercase;
+    font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+    line-height: 1.15;
+    padding-left: 0.75rem;
+    font-weight: 800;
+}
+
+.link-btn .word::first-letter {
+    font-size: 1.8em;    /* bigger first letter for each word */
+    line-height: 1;
+}
+
+/* polish */
+.link-btn:where(:hover, :focus-visible) {
+    transform: translateY(-0.15rem);
+    outline: none;
+}
+
+
 
 
 
