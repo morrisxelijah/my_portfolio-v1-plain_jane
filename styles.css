@@ -14,7 +14,7 @@
     /* dark palette (alt colors) */
     --dark-bg: #121929;
     --dark-primary: #d5d5d5;
-    --dark-secondary: #02f1c9cd;
+    --dark-secondary: #02f1a1cd;
     --dark-accent: #00c8ffee;
     --dark-muted: #0c101be6;
     --dark-shadows: rgba(255, 255, 255, 0.25);    /* lighter for visual effect */
@@ -30,10 +30,13 @@
     --wave-stretch: 1.27;
     --wave-overscan: 22vh;    /* extend the ocean below the viewport soit doesn't cut off */
 
-    /* fonts */
-    --font-reg: 'Helvetica Neue', sans-serif;
+    /* fonts  — use Google Fonts (loaded in <head>) */
+    --font-reg: Arial, Helvetica, sans-serif;
     --font-fun: 'Comic Sans MS', sans-serif;
     --font-accent: 'Comic Neue', cursive;
+    /* --font-reg: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-fun: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
+    --font-accent: 'Comic Neue', cursive, sans-serif; */
 
     /* randomized later (JS) */
     --popout-top: 30vh;
@@ -79,6 +82,13 @@
     block-size: 2rem;
     transition: opacity 0.5s ease;    /* fade for smoothness */
     pointer-events: none;    /* lets click pass through to checkbox */
+}
+
+/* make inline SVG icons in cards match img sizing */
+.icon-item svg {
+    inline-size: clamp(2rem, 6vw, 4rem);
+    block-size: auto;
+    margin-block-end: 0.5rem;
 }
 
 /* light icon visible (default) */
@@ -161,6 +171,7 @@ footer p {
 }
 
 .hero .highlight-name {
+    font-family: var(--font-fun);    /* make the name use your playful font too */
     color: var(--accent);
     font-weight: 800;
 }
@@ -222,6 +233,8 @@ body.ready .icon-wrapper.off {
     padding: 1rem;
     border-radius: 0.75rem;
     transition: transform 0.2s ease;
+    font-size: 1.3rem;
+    font-weight: 500;
 }
 
 .icon-item :is(img, svg) {
@@ -437,7 +450,7 @@ body.is-dragging, body.is-dragging * { user-select: none; }
 
 
 .window-title {
-    font-weight: 700;
+    font-weight: 900;
     text-transform: uppercase;
     text-align: left;
     font-size: 1.3rem;
@@ -484,12 +497,68 @@ body.is-dragging, body.is-dragging * { user-select: none; }
 /* adding visual slide-down needs JS: css can't animate unchecked/closed element */
 
 
+
+
+
+/* ----------------------------
+   window content polish (all)
+   ----------------------------- */
+
+/* base type inside windows */
 .window-content {
     padding: 1rem;
     font-size: 0.95rem;
+    line-height: 1.6;    /* more readable paragraphs */
 }
 
+/* vertical rhythm — every sibling gets some space */
+.window-content>*+* {
+    margin-block-start: 0.75rem;
+}
 
+/* headings inside windows — larger + spaced */
+.window-content :is(h2, h3, h4) {
+    font-family: var(--font-reg);    /* keep headings clean/legible */
+    font-weight: 800;    /* strong weight for headings */
+    letter-spacing: 0.02em;    /* tiny tracking for clarity */
+    line-height: 1.25;
+    margin-block-start: 1.25rem;    /* more space *before* headings */
+    margin-block-end: 0.5rem;    /* modest space *after* headings */
+    padding-top: 1rem;
+}
+
+/* responsive heading sizes (no px) */
+.window-content h2 {
+    font-size: clamp(1.15rem, 1.8vw, 1.5rem);
+}
+
+.window-content h3 {
+    font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+}
+
+.window-content h4 {
+    font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+}
+
+/* paragraphs and lists */
+.window-content p {
+    margin-block: 0.5rem 0;    /* a bit of breathing room */
+}
+
+.window-content :is(ul, ol) {
+    margin-block: 0.5rem 0;
+    padding-inline-start: 1.25rem;
+}
+
+/* accent small labels/badges if you add them later */
+.window-content .eyebrow {
+    font-family: var(--font-fun);    /* playful small label */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
 
 
 
@@ -539,18 +608,197 @@ body.is-dragging, body.is-dragging * { user-select: none; }
     font-size: clamp(1.1rem, 3.5vw, 1.5rem);
     line-height: 1.15;
     padding-left: 0.75rem;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .link-btn .word::first-letter {
     font-size: 1.8em;    /* bigger first letter for each word */
     line-height: 1;
+    font-weight: 550;
 }
 
 /* polish */
 .link-btn:where(:hover, :focus-visible) {
     transform: translateY(-0.15rem);
     outline: none;
+}
+
+
+
+
+/* ----------------------------
+   FAQ window (details / summary)
+----------------------------- */
+
+/* container (optional hook) */
+.faq {
+    display: grid;
+    gap: 0.75rem;
+}
+
+/* card shell */
+.faq details {
+    background: color-mix(in oklab, var(--muted) 92%, transparent);
+    border: 0.12rem solid color-mix(in oklab, var(--primary) 20%, transparent);
+    border-radius: 0.9rem;
+    overflow: hidden;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+/* clickable header */
+.faq summary {
+    list-style: none;    /* hide native marker */
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: clamp(0.8rem, 2.6vw, 1rem) clamp(1rem, 3vw, 1.25rem);
+    font-weight: 800;
+    cursor: pointer;
+    color: var(--primary);
+}
+
+/* custom triangle marker */
+.faq summary::before {
+    content: '▸';
+    inline-size: 1em;
+    transform-origin: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.7;
+}
+
+/* rotate arrow when open */
+.faq details[open] summary::before {
+    transform: rotate(90deg);
+    opacity: 0.9;
+}
+
+/* answer body */
+.faq .answer {
+    padding: 0 clamp(1rem, 3vw, 1.25rem) clamp(1rem, 3vw, 1.25rem);
+    color: var(--primary);
+    opacity: 0.95;
+}
+
+/* hover / focus affordance */
+.faq details:where(:hover) {
+    border-color: color-mix(in oklab, var(--accent) 30%, var(--primary) 70%);
+}
+
+.faq summary:focus-visible {
+    outline: 0.25rem solid color-mix(in oklab, var(--accent) 60%, transparent);
+    outline-offset: 0.15rem;
+}
+
+
+
+/* ----------------------------
+   CONTACT window
+----------------------------- */
+
+.contact-intro {
+    font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+    opacity: 0.9;
+}
+
+.contact-quick {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.btn-contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    padding: clamp(0.6rem, 2.2vw, 0.9rem) clamp(1rem, 3vw, 1.4rem);
+    border-radius: 0.9rem;
+    font-size: clamp(0.95rem, 2.6vw, 1.15rem);
+    box-shadow: 0 0.5rem 2rem var(--shadows);
+}
+
+.btn-contact:where(:hover, :focus-visible) {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.75rem 2.4rem var(--shadows);
+    outline: none;
+}
+
+.contact-form {
+    display: grid;
+    gap: 1rem;
+    margin-block-start: 0.5rem;
+}
+
+.contact-row label {
+    display: block;
+    font-weight: 800;
+    color: var(--primary);
+    margin-block-end: 0.25rem;
+    font-size: clamp(0.9rem, 2.2vw, 1rem);
+    letter-spacing: 0.02em;
+}
+
+.contact-row input,
+.contact-row select,
+.contact-row textarea {
+    width: 100%;
+    background: color-mix(in oklab, var(--muted) 94%, transparent);
+    color: var(--primary);
+    border: 0.12rem solid color-mix(in oklab, var(--primary) 25%, transparent);
+    border-radius: 0.9rem;
+    padding: clamp(0.65rem, 2.2vw, 0.95rem) clamp(0.9rem, 3vw, 1.25rem);
+    font-size: clamp(0.95rem, 2.2vw, 1.05rem);
+    line-height: 1.4;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-row input:focus-visible,
+.contact-row select:focus-visible,
+.contact-row textarea:focus-visible {
+    outline: 0.25rem solid color-mix(in oklab, var(--accent) 55%, transparent);
+    outline-offset: 0.12rem;
+    border-color: color-mix(in oklab, var(--accent) 45%, var(--primary) 55%);
+    box-shadow: 0 0.75rem 2.2rem var(--shadows);
+}
+
+.contact-row--custom-subject[hidden] {
+    display: none !important;
+}
+
+.contact-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.btn-send {
+    border: none;
+    background: var(--secondary);
+    color: var(--bg);
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    padding: clamp(0.7rem, 2.6vw, 1rem) clamp(1.1rem, 3.6vw, 1.75rem);
+    border-radius: 1rem;
+    font-size: clamp(1rem, 2.6vw, 1.2rem);
+    cursor: pointer;
+    box-shadow: 0 0.6rem 2.2rem var(--shadows);
+    transition: transform 0.15s ease, box-shadow 0.3s ease;
+}
+
+.btn-send:where(:hover, :focus-visible) {
+    transform: translateY(-0.12rem) scale(1.01);
+    box-shadow: 0 0.9rem 2.6rem var(--shadows);
+    outline: none;
+}
+
+.contact-note {
+    font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+    opacity: 0.7;
 }
 
 
@@ -565,7 +813,7 @@ body.is-dragging, body.is-dragging * { user-select: none; }
 @media (min-width:768px) {
 
     .icon-grid > .icon-wrapper {
-        flex: 1 1 calc((100% - (var(--desktop-cols) - 1)*var(--gap)) / var(--desktop-cols)); /* visible icons take up all available space */
+        flex: 1 1 calc((99% - (var(--desktop-cols) - 1)*var(--gap)) / var(--desktop-cols)); /* visible icons take up all available space */
     }
 
     .drag-handle {

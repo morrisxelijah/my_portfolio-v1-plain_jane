@@ -11,6 +11,15 @@
     />
     <title>eli's portfolio</title>
 
+    <!-- google fonts (online)  -->
+    <!-- load BEFORE your main stylesheet so variables use the web fonts on first paint -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- main stylesheet (loads after theme has been stamped) -->
     <link rel="stylesheet" href="styles.css" />
 
@@ -93,7 +102,9 @@
                 <path class="about-glyph" d="M12 9h.01"/>
                 <path class="about-glyph" d="M11 12h1v4h1"/>
             </svg>
+
             <p>about</p>
+            
           </label>
 
           <section id="about" class="window">
@@ -114,7 +125,43 @@
             </div>
 
             <div class="window-content">
-              <p>this is the about window</p>
+              
+              <!-- about content -->
+              <h2>Aspiring Machine Learning Engineer &amp; Quantitative Researcher</h2>
+              <p>
+                  NYC born and raised (Queens). I started in Mechanical Engineering on an ROTC scholarship,
+                  pivoted during COVID/medical, and worked my way up in hospitality (dishwasher → line cook
+                  → catering captain), including executive dining inside a major financial firm. I’m now
+                  focused on software engineering with a path into ML and quantitative research.
+              </p>
+
+              <h3>What I’m looking for</h3>
+              <ul>
+                  <li>Entry-level data / ML / quant internships or roles.</li>
+                  <li>Remote preferred; open to relocate (NYC metro, Chicago, Austin, Miami).</li>
+                  <li>Available Spring 2026 (as I wrap up Future Code).</li>
+              </ul>
+
+              <h3>How I work</h3>
+              <p>
+                  I ship scrappy, testable MVPs fast, collect feedback early, then harden—so teams learn sooner
+                  and avoid daisy-chained hot fixes.
+              </p>
+
+              <h3>Learning timeline (MVP)</h3>
+              <ul>
+                  <li><strong>Pre-program:</strong> NYS DOL → Coursera certs; self-study Python/JS/HTML/CSS.</li>
+                  <li><strong>Weeks 1–9:</strong> JS/HTML/CSS/Bash/Git; mini-projects (text adventure, portfolio, small app).</li>
+                  <li><strong>Next up:</strong> Python data stack (pandas/NumPy/sklearn), simple dashboards/APIs, Notion analytics.</li>
+                  <li><strong>Spring 2026:</strong> Active interviews; ship small data/ML projects.</li>
+              </ul>
+
+              <h3>Certifications</h3>
+              <ul>
+                  <li>Google Data Analytics (Coursera)</li>
+                  <li>Google IT Automation with Python (Coursera)</li>
+              </ul>
+              
             </div>
           </section>
         </div>
@@ -186,7 +233,7 @@
                   </li>
 
                   <li>
-                      <a class="link-btn" href="#" target="_blank" rel="noopener" aria-label="Open LinkedIn">
+                      <a class="link-btn" href="www.linkedin.com/in/exmorris" target="_blank" rel="noopener" aria-label="Open LinkedIn">
                           <span class="link-icon" aria-hidden="true">
                               <!-- LINKEDIN icon -->
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -291,7 +338,40 @@
               </div>
             </div>
             <div class="window-content">
-              <p>this is the experience window</p>
+
+              <!-- experience content -->
+              <h2>Experience</h2>
+
+              <h3>Hospitality &amp; Events — Catering Captain (Event Manager)</h3>
+              <ul>
+                  <li>Owned high-stakes events end-to-end; coordinated culinary, facilities, and security.</li>
+                  <li>Introduced repeatable checklists + comms to reduce misses under tight timelines.</li>
+              </ul>
+
+              <h3>Culinary — Line Cook &amp; Sushi Apprentice (Executive Dining)</h3>
+              <ul>
+                  <li>High-volume service with strict quality/timing standards for VIP stakeholders.</li>
+                  <li>Cross-trained; supported rapid menu changes and last-minute requests.</li>
+              </ul>
+
+              <h3>Technical Learning</h3>
+              <ul>
+                  <li>Future Code NYC × Codesmith (in progress): full-stack foundations; ML/AI/DevOps exposure.</li>
+                  <li>Coursera + Codecademy + Credly badges (see Links).</li>
+              </ul>
+
+              <h3>Projects (early)</h3>
+              <ul>
+                  <li><strong>Connect 4 (Python → Java refactor):</strong> terminal game focusing on clean state design.</li>
+                  <li><strong>This Portfolio:</strong> responsive, themeable; draggable windows; animated SVG waves.</li>
+                  <li><strong>Text Adventure (browser):</strong> Bronx → Governors Island story with mini-games gates.</li>
+                  <li><strong>Home Server &amp; Homelab (small business):</strong> hybrid cloud + open-source; centralized devices; hardened configs.</li>
+                  <li><strong>Java “Ninja” terminal mini-game:</strong> missions + training loops (HP/ATK/DEF).</li>
+              </ul>
+
+              <h3>Stack (now)</h3>
+              <p>Python • HTML • CSS • JavaScript</p>
+
             </div>
           </section>
         </div>
@@ -336,7 +416,112 @@
               </div>
             </div>
             <div class="window-content">
-              <p>this is the faq window</p>
+
+              <!-- recruiter/client FAQ — now using details/summary toggles -->
+              <h2>Frequently Asked Questions</h2>
+
+              <details>
+                  <summary>Roles you’re targeting?</summary>
+                  <p>Entry-level Data / ML or Quant internships/roles; also Data Analyst/Associate.</p>
+              </details>
+
+              <details>
+                  <summary>Work setup & locations?</summary>
+                  <p>Remote preferred; open to NYC, Chicago, Austin, Miami. Hybrid/in-person fine for onboarding/training.</p>
+              </details>
+
+              <details>
+                  <summary>Start date?</summary>
+                  <p>Spring 2026.</p>
+              </details>
+
+              <details>
+                  <summary>Python data/ML libraries you’ve used?</summary>
+                  <p>Hands-on with <strong>pandas</strong> and <strong>matplotlib</strong>; actively learning scikit-learn/NumPy.</p>
+              </details>
+
+              <details>
+                  <summary>SQL comfort level?</summary>
+                  <p>Comfortable with SELECTs, JOINs, GROUP BY; building toward more advanced/efficient queries.</p>
+              </details>
+
+              <details>
+                  <summary>Statistics background?</summary>
+                  <p>Comfortable with basic distributions and hypothesis testing; expanding into regression and time-series.</p>
+              </details>
+
+              <details>
+                  <summary>Deployments you’ve done?</summary>
+                  <p>Deployed this portfolio with GitHub Actions/Pages.</p>
+              </details>
+
+              <details>
+                  <summary>Upcoming ML mini-project?</summary>
+                  <p>Spotify analytics recommender: periodic insights + song/album/playlist recommendations from my usage profile.</p>
+              </details>
+
+              <details>
+                  <summary>Markets you follow?</summary>
+                  <p>Crypto, FX, and futures (retail practice via simulator). Building a structured learning roadmap in data/ML/quant.</p>
+              </details>
+
+              <details>
+                  <summary>Tools you want to use for quant work?</summary>
+                  <p>pandas, NumPy, polars, backtrader/zipline, JAX/PyTorch (Python + SQL as primary languages).</p>
+              </details>
+
+              <details>
+                  <summary>Coursework/certs planned?</summary>
+                  <p>CFA Investment Foundations; Bloomberg Market Concepts; curated quant interview prep (TraderMath, QuantQuestions, QuantGuide).</p>
+              </details>
+
+              <details>
+                  <summary>Risk concepts?</summary>
+                  <p>Early stage—learning drawdown, Sharpe, volatility, position sizing.</p>
+              </details>
+
+              <details>
+                  <summary>Excel/PowerPoint & 1-page summaries?</summary>
+                  <p>Very comfortable—can turn analysis into a concise, executive-ready slide or brief.</p>
+              </details>
+
+              <details>
+                  <summary>Time management & long sprints?</summary>
+                  <ul>
+                      <li><strong>Event pre-flight:</strong> Prep checklist + run-of-show reduced fire drills; clear ownership across teams.</li>
+                      <li><strong>Peak-hour triage:</strong> Prioritized time-sensitive dishes; batched non-critical tasks to keep service on time.</li>
+                      <li><strong>Context switching:</strong> Vendor calls, kitchen line, client changes tracked on a visible queue so nothing slipped.</li>
+                  </ul>
+              </details>
+
+              <details>
+                  <summary>Late/market hours?</summary>
+                  <p>Open to it—especially when it accelerates learning and growth into higher-impact work within 1–2 years.</p>
+              </details>
+
+              <details>
+                  <summary>Hardware/setup?</summary>
+                  <p>MacBook Pro + external monitor; noise-cancelling headset + mic; optional external camera. Raspberry Pi k3s cluster with Proxmox; additional laptops + storage in a homelab.</p>
+              </details>
+
+              <details>
+                  <summary>Ideal mentorship?</summary>
+                  <ul>
+                      <li><strong>Onboarding:</strong> 2 pairing sessions/week for the first month on real tickets; daily async code review.</li>
+                      <li><strong>Feedback:</strong> Weekly 1:1 with clear goals; small “learning backlog” tied to team work.</li>
+                      <li><strong>Autonomy:</strong> Own small features end-to-end by month 2; short demos to share learnings.</li>
+                  </ul>
+              </details>
+
+              <details>
+                  <summary>Process improvement example (hospitality)</summary>
+                  <p>
+                      Introduced a lightweight “par + prep” sheet for recurring VIP lunches: item counts, station ownership,
+                      and a 60-minute pre-service cross-check. It reduced last-minute shortages and improved hand-offs—similar
+                      to a sprint board with tickets, owners, and acceptance checks.
+                  </p>
+              </details>
+
             </div>
           </section>
         </div>
@@ -382,7 +567,65 @@
               </div>
             </div>
             <div class="window-content">
-              <p>this is the contact window</p>
+
+              <!-- quick intro -->
+              <p class="contact-intro">
+                  Prefer <strong>email</strong> or <strong>LinkedIn DM</strong>. Form below opens your email app (MVP — no backend yet).
+              </p>
+
+              <!-- quick buttons -->
+              <div class="contact-quick">
+                  <!-- TODO: replace with your real address -->
+                  <a class="btn-contact" href="mailto:hello@example.com" aria-label="email me">email me</a>
+                  <!-- TODO: replace with your real LinkedIn -->
+                  <a class="btn-contact" href="https://www.linkedin.com/in/exmorris" target="_blank" rel="noopener" aria-label="linkedin dm">linkedin dm</a>
+              </div>
+
+              <!-- simple email form (JS will assemble a mailto: link) -->
+              <form id="contact-form" class="contact-form" autocomplete="on" novalidate>
+                  <div class="contact-row">
+                      <label for="cf-name">your name</label>
+                      <input id="cf-name" name="name" type="text" autocomplete="name" required />
+                  </div>
+
+                  <div class="contact-row">
+                      <label for="cf-email">your email</label>
+                      <input id="cf-email" name="email" type="email" autocomplete="email" required />
+                  </div>
+
+                  <div class="contact-row">
+                      <label for="cf-subject">subject</label>
+                      <select id="cf-subject" name="subject">
+                          <option value="General Inquiry">GENERAL INQUIRY</option>
+                          <option value="Collaboration">COLLABORATION</option>
+                          <option value="Freelance Project">FREELANCE PROJECT</option>
+                          <option value="Interview / Recruiter">INTERVIEW / RECRUITER</option>
+                          <option value="Custom">CUSTOM…</option>
+                      </select>
+                  </div>
+
+                  <!-- hidden until “CUSTOM…” is selected (we’ll toggle via tiny JS) -->
+                  <div class="contact-row contact-row--custom-subject" hidden>
+                      <label for="cf-subject-custom">custom subject</label>
+                      <input id="cf-subject-custom" name="subjectCustom" type="text" placeholder="type a subject" />
+                  </div>
+
+                  <div class="contact-row">
+                      <label for="cf-message">message</label>
+                      <textarea id="cf-message" name="message" rows="6" required></textarea>
+                  </div>
+
+                  <div class="contact-actions">
+                      <button type="submit" class="btn-send">send message</button>
+                      <p class="contact-note">This will open your default mail app with your message pre-filled.</p>
+                  </div>
+              </form>
+
+              <noscript>
+                  <p>JavaScript is disabled. Please email me at
+                     <a href="mailto:hello@example.com">hello@example.com</a>.
+                  </p>
+              </noscript>
             </div>
           </section>
         </div>
@@ -427,7 +670,20 @@
               </div>
             </div>
             <div class="window-content">
-              <p>this is the random window</p>
+
+              <!-- fun facts / personal -->
+              <h2>Random</h2>
+              <ul>
+                  <li>NYC forever; family roots in the Caribbean &amp; Asia. Queens near JFK.</li>
+                  <li>Outdoors: High Line, Brooklyn Botanic Garden, Orchard Beach, Brookfield Place waterfront.</li>
+                  <li>Museums: Transit Museum, Brooklyn Museum, Queens Museum, AMNH.</li>
+                  <li>Fun spots: Topgolf, Area 53, House of Yes, Flushing food runs.</li>
+                  <li>Music addict: ~40,000 liked songs on Spotify; I play guitar, bass, piano, and drums.</li>
+                  <li>Games: Minecraft, Madden/2K/WWE, Tekken, Mortal Kombat, Assassin’s Creed, The Sims, Just Dance.</li>
+                  <li>Boards: electric, popsicle, longboard.</li>
+                  <li>Past life: catering manager + sushi apprentice in executive dining.</li>
+              </ul>
+
             </div>
           </section>
         </div>
