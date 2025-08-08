@@ -281,13 +281,41 @@
       </nav>
     </main>
 
+
+     <!-- wave backdrop sits behind the bottom half of page -->
+    <div class="ocean-backdrop" aria-hidden="true"> 
+        <div class="ocean"> 
+            <!-- BACK wave (slower, lighter) — curvier path -->
+            <svg class="wave wave-back" viewBox="0 0 1200 200" preserveAspectRatio="none" focusable="false"> 
+                <path d="
+                  M0,138
+                  C70,126 155,150 235,138
+                  C325,150 415,126 505,138
+                  C595,150 700,126 805,138
+                  C895,150 1010,126 1120,138
+                  C1160,142 1180,140 1200,138
+                  L1200,200 L0,200 Z
+                "></path> 
+            </svg> 
+
+            <!-- FRONT wave (faster, stronger) — same curve for now -->
+            <svg class="wave wave-front" viewBox="0 0 1200 200" preserveAspectRatio="none" focusable="false"> 
+                <path d="
+                  M0,138
+                  C70,126 155,150 235,138
+                  C325,150 415,126 505,138
+                  C595,150 700,126 805,138
+                  C895,150 1010,126 1120,138
+                  C1160,142 1180,140 1200,138
+                  L1200,200 L0,200 Z
+                "></path> 
+            </svg> 
+        </div> 
+    </div> 
+
+
     <!-- footer -->
     <footer>
-      <img
-        src="assets/images/wave.svg"
-        alt="wave background"
-        class="wave-image"
-      />
       <p>&copy 2025 ELIJAH MORRIS</p>
     </footer>
 

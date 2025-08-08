@@ -6,6 +6,7 @@
     ✦ pops out each app window at a random vw / vh offset
     ✦ stagger pop in animation for trigger fingers
     ✦ brings most‑recent window to front
+    ✦ makes app windows draggable (desktop only)
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 
@@ -174,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextWindow = openQueue.shift();
         isAnimating = true;
 
-        // kick off popout
+        // start popout
         randomizePosition(nextWindow);
         bringToFront(nextWindow);
 
