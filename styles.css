@@ -573,7 +573,6 @@ body.is-dragging, body.is-dragging * { user-select: none; }
     list-style: none;
     display: grid;
     gap: 1rem;
-    margin: 1.5rem auto 0;
     padding: 0;
     max-inline-size: 90vw;
 }
