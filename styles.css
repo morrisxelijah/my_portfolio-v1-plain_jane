@@ -30,13 +30,12 @@
     --wave-stretch: 1.27;
     --wave-overscan: 22vh;    /* extend the ocean below the viewport soit doesn't cut off */
 
-    /* fonts  — use Google Fonts (loaded in <head>) */
+    /* fonts  */
+    /* TODO:  add fonts to project folder + an online backup */
     --font-reg: Arial, Helvetica, sans-serif;
     --font-fun: 'Comic Sans MS', sans-serif;
     --font-accent: 'Comic Neue', cursive;
-    /* --font-reg: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    --font-fun: 'Comic Neue', 'Comic Sans MS', cursive, sans-serif;
-    --font-accent: 'Comic Neue', cursive, sans-serif; */
+
 
     /* randomized later (JS) */
     --popout-top: 30vh;
@@ -80,7 +79,7 @@
     margin: auto;    /* center in wrapper */
     inline-size: 2rem;
     block-size: 2rem;
-    transition: opacity 0.5s ease;    /* fade for smoothness */
+    transition: opacity 3s ease, color: 3s ease;    /* fade for smoothness */
     pointer-events: none;    /* lets click pass through to checkbox */
 }
 
@@ -171,7 +170,7 @@ footer p {
 }
 
 .hero .highlight-name {
-    font-family: var(--font-fun);    /* make the name use your playful font too */
+    font-family: var(--font-fun);
     color: var(--accent);
     font-weight: 800;
 }
@@ -550,15 +549,6 @@ body.is-dragging, body.is-dragging * { user-select: none; }
     padding-inline-start: 1.25rem;
 }
 
-/* accent small labels/badges if you add them later */
-.window-content .eyebrow {
-    font-family: var(--font-fun);    /* playful small label */
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 0.8rem;
-    opacity: 0.8;
-}
 
 
 
